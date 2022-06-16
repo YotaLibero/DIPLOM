@@ -6,6 +6,9 @@ const sqlite = require('sqlite3').verbose();
 
 // Express Application
 var ExpressApp = express();
+ExpressApp.use(bodyParser.urlencoded({
+    extended: true,
+}));
 
 // Database configuration 
 const db_name = path.join(__dirname, "database.db");
