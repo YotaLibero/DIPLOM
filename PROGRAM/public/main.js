@@ -1,15 +1,18 @@
 const {app, BrowserWindow} = require('electron')
 
+require('../ExpressApp')
+
 let mainWindow;
 
 function createWindow () {
 
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 722,
+    width: 1201,
+    height: 805,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    resizable: false
   })
 
   mainWindow.loadURL('http://localhost:3000')
@@ -21,10 +24,6 @@ function createWindow () {
 }
 
 app.on('ready', createWindow)
-
-app.on('resize', function(e,x,y){
-  mainWindow.setSize(x, y);
-});
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {

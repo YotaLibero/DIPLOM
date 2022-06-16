@@ -120,7 +120,7 @@ export const changeLvlMA = (newLvlMA) => {
 
 function AuthorizationReducer(state = initialState, action) {
 	switch(action.type) {
-		case ACTION_CHANGE_LOGIN:
+		case ACTION_CHANGE_NAME:
 			return Object.assign({}, state, {name: action.data});
 		case ACTION_CHANGE_LVLAR:
 			return Object.assign({}, state, {lvl_ar: action.data});
