@@ -1,0 +1,9 @@
+.mainDate{
+    margin-right: 20px;
+}
+
+.datepickerinput {
+    height: 32px;
+    width: 180px;
+    font-size: 18px;
+}

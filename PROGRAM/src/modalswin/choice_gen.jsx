@@ -1,15 +1,66 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import PropTypes from "prop-types";
 
 import Portal from '../components/Portal';
 import Button from "../components/Button";
 import './modalswin.css';
 import Input from "../components/Input";
-// import './select_search';
+import Select from 'react-select';
+import {getValue} from "@testing-library/user-event/dist/utils";
+
+
+const options = [
+    // могу предположить, что можно будет спокойно обращаться к БД и заменить позже эти стат значения на запрос к БД
+    {
+        value: 'Generator 0', // для БД
+        label: 'Generator 0' // то, что мы видим (логично)
+    },
+    {
+        value: 'Generator 1', // для БД
+        label: 'Generator 1' // то, что мы видим (логично)
+    },
+    {
+        value: 'Generator 2',
+        label: 'Generator 2'
+    },
+    {
+        value: 'Generator 3',
+        label: 'Generator 3'
+    },
+    {
+        value: 'Generator 4',
+        label: 'Generator 4'
+    },
+    {
+        value: 'Generator 5',
+        label: 'Generator 5'
+    },
+    {
+        value: 'Generator 6',
+        label: 'Generator 6'
+    },
+    {
+        value: 'Generator 7',
+        label: 'Generator 7'
+    },
+    {
+        value: 'Generator 8',
+        label: 'Generator 8'
+    },
+]
 
 const Choice_Gen = ({
                      title2, isOpen2, onCancel2, onSubmit2,
                  }) => {
+
+    const [currentGenerator, setCurrentGenerator] = useState("Generator 0")
+
+    const getValue = () => {
+        return currentGenerator ? options.find(c => c.value === currentGenerator) : ''
+    }
+    const OnChange = (newValue: any) => {
+        setCurrentGenerator(newValue.value)
+    }
 
     return(
         <>
@@ -23,74 +74,17 @@ const Choice_Gen = ({
                                     <div id="frame7-1">
                                         <table>
                                             <tr>
-                                                <div className="container-ss">
-                                                    <div className="select-box">
-                                                        <div className="options-container">
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="automobiles"
-                                                                       name="category"/>
-                                                                <label htmlFor="automobiles">Automobiles</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="film"
-                                                                       name="category"/>
-                                                                <label htmlFor="film">Film & Animation</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="science"
-                                                                       name="category"/>
-                                                                <label htmlFor="science">Science & Technology</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="art"
-                                                                       name="category"/>
-                                                                <label htmlFor="art">Art</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="music"
-                                                                       name="category"/>
-                                                                <label htmlFor="music">Music</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="travel"
-                                                                       name="category"/>
-                                                                <label htmlFor="travel">Travel & Events</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="sports"
-                                                                       name="category"/>
-                                                                <label htmlFor="sports">Sports</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="news"
-                                                                       name="category"/>
-                                                                <label htmlFor="news">News & Politics</label>
-                                                            </div>
-
-                                                            <div className="option">
-                                                                <input type="radio" className="radio" id="tutorials"
-                                                                       name="category"/>
-                                                                <label htmlFor="tutorials">Tutorials</label>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="selected">
-                                                            Select Video Category
-                                                        </div>
-
-                                                        <div className="search-box">
-                                                            <input type="text" placeholder="Start Typing..."/>
-                                                        </div>
-                                                    </div>
+                                                <td><h3>Выбрать генератор: </h3></td>
+                                                <div className="select-box">
+                                                    <td>
+                                                        <Select
+                                                            classNamePrefix='custom-select'
+                                                            onChange={OnChange}
+                                                            value={getValue()}
+                                                            options={options}
+                                                        />
+                                                    </td>
                                                 </div>
-                                                <script src="./select_search.js" ></script>
                                             </tr>
                                         </table>
                                     </div>
@@ -141,19 +135,19 @@ const Choice_Gen = ({
                                                                                        className="param_lab">AR1:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="phi_1" defaultValue={0.0}/>
+                                                                                       name="phi_1" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                             <td><label id="PHI_2"
                                                                                        className="param_lab">AR2:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/>
+                                                                                       name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                             <td><label id="PHI_3"
                                                                                        className="param_lab">AR3:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/>
+                                                                                       name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                         </tr>
                                                                     </td>
@@ -171,21 +165,21 @@ const Choice_Gen = ({
                                                                             </td>
                                                                             <td><Input type="number"
                                                                                        className="param_tex-1"
-                                                                                       name="firstname" defaultValue={0.0}/>
+                                                                                       name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                             <td><label id="Y_AR_2"
                                                                                        className="param_lab-1">Y_2:</label>
                                                                             </td>
                                                                             <td><Input type="number"
                                                                                        className="param_tex-1"
-                                                                                       name="firstname" defaultValue={0.0}/>
+                                                                                       name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                             <td><label id="Y_AR_3"
                                                                                        className="param_lab-1">Y_3:</label>
                                                                             </td>
                                                                             <td><Input type="number"
                                                                                        className="param_tex-1"
-                                                                                       name="firstname" defaultValue={0.0}/>
+                                                                                       name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                         </tr>
                                                                     </td>
@@ -228,12 +222,12 @@ const Choice_Gen = ({
                                                                                        className="param_lab">MA1:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                             <td><label id="TETA_2"
                                                                                        className="param_lab">MA2:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </td>
                                                                 </tr>
@@ -250,7 +244,7 @@ const Choice_Gen = ({
                                                                             </td>
                                                                             <td><Input type="text"
                                                                                        className="param_tex-1"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </table>
                                                                 </li>
@@ -265,12 +259,12 @@ const Choice_Gen = ({
                                                                             <td><label className="param_lab-2">Мат
                                                                                 ожидание: </label></td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                             <td><label
                                                                                 className="param_lab-2-1">Дисперсия: </label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </td>
                                                                 </tr>
@@ -295,7 +289,7 @@ const Choice_Gen = ({
                                                                             <td><label className="param_lab">a:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </table>
                                                                 </li>
@@ -305,7 +299,7 @@ const Choice_Gen = ({
                                                                             <td><label className="param_lab">b:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </table>
                                                                 </li>
@@ -315,7 +309,7 @@ const Choice_Gen = ({
                                                                             <td><label className="param_lab">c:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </table>
                                                                 </li>
@@ -333,19 +327,19 @@ const Choice_Gen = ({
                                                                         <td><label className="param_lab">СКО рядов
                                                                             стационарной составляющей:</label></td>
                                                                         <td><Input type="number" className="param_tex"
-                                                                                   name="firstname" defaultValue={0.0}/></td>
+                                                                                   name="firstname" defaultValue={0.0} readOnly /></td>
                                                                     </tr>
                                                                     <tr className={'n1'}>
                                                                         <td><label className="param_lab">Начальное
                                                                             значение ступеньки:</label></td>
                                                                         <td><Input type="number" className="param_tex"
-                                                                                   name="firstname" defaultValue={0.0}/></td>
+                                                                                   name="firstname" defaultValue={0.0} readOnly /></td>
                                                                     </tr>
                                                                     <tr className={'n1'}>
                                                                         <td><label className="param_lab">СКО без
                                                                             выбросов:</label></td>
                                                                         <td><Input type="number" className="param_tex"
-                                                                                   name="firstname" defaultValue={0.0}/></td>
+                                                                                   name="firstname" defaultValue={0.0} readOnly /></td>
                                                                     </tr>
                                                                 </td>
                                                             </tr>
@@ -356,7 +350,7 @@ const Choice_Gen = ({
                                         </table>
                                     </div>
 
-                                    <a className="closing-button-4"><span>Добавить генератор</span></a>
+                                    <a className="closing-button-4" onClick={onSubmit2}><span>Добавить генератор</span></a>
                                 </div>
                             </div>
                             <div className="modalFooter1">

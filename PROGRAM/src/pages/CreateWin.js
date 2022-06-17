@@ -11,6 +11,7 @@ import Input from "../components/Input";
 import Parser from "../modalswin/parser";
 import Add_Gen from "../modalswin/add_gen";
 import Choice_Gen from "../modalswin/choice_gen";
+import Generation from "../modalswin/generation";
 
 //<Button className="import_data"><span>Импорт данных</span></Button>
 class CreateWin extends React.Component {
@@ -19,6 +20,7 @@ class CreateWin extends React.Component {
         isOpen: false,
         isOpen1: false,
         isOpen2: false,
+        isOpen4: false,
     }
 
     openModal = () => {this.setState({ isOpen: true });}
@@ -51,6 +53,16 @@ class CreateWin extends React.Component {
     handleCancel2 = () => {
         console.log('Cancel function!');
         this.setState({ isOpen2: false });
+    }
+
+    openModal4 = () => {this.setState({ isOpen4: true });}
+    handleSubmit4 = () => {
+        console.log('Submit function!');
+        this.setState({ isOpen4: false });
+    }
+    handleCancel4 = () => {
+        console.log('Cancel function!');
+        this.setState({ isOpen4: false });
     }
 
     render() {
@@ -122,13 +134,21 @@ class CreateWin extends React.Component {
                                         <div id="modryad">
                                             <div id="frame030">
                                                 <ul>
-                                                    <li><Button
-                                                        className="closing-button-2"><span>Импорт данных</span></Button>
-                                                    </li>
+                                                    <label htmlFor="dat_file"
+                                                           className="closing-button-21"><span>Импорт данных</span>
+                                                        <input type="file"
+                                                               accept=".dat" id="dat_file" multiple="multiple" onChange={() => {
+                                                                   let inputFile = document.getElementById('dat_file').files;
+                                                                   console.log(inputFile.length - 1);
+                                                                   document.getElementById('path_file_dat').value = inputFile[0].name + ' – ' + inputFile[inputFile.length - 1].name;
+                                                                   console.log(document.getElementById('dat_file').files);
+                                                                   console.log(inputFile[1].name.toString())
+                                                        }}/>
+                                                    </label>
                                                 </ul>
                                                 <div className="text-field">
                                                     <input className="text-field__input" type="text"
-                                                           name="login"
+                                                           name="login" id={'path_file_dat'}
                                                            placeholder="Login" value="Путь к файлу" readOnly/>
                                                 </div>
                                                 <div className="text-radios-list">
@@ -170,7 +190,11 @@ class CreateWin extends React.Component {
                                             <Button className="closing-button-cl" onClick={this.handleSubmit}><span>Сформировать</span></Button>
                                         </div>
                                 </Parser>
-                                <Button className="generation_data" onClick={this.handleSubmit}><span>Сгенерировать ряды измерений</span></Button>
+                                <Button className="generation_data" onClick={this.openModal4}><span>Сгенерировать ряды измерений</span></Button>
+                                <Generation isOpen4={this.state.isOpen4}
+                                            onCancel4={this.handleCancel4}
+                                            onSubmit4={this.handleSubmit4}
+                                />
                             </div>
                             <div id="frame02">
                                 <h1>Редактирование генераторов</h1>
