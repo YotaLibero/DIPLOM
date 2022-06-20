@@ -7,12 +7,18 @@ let mainWindow;
 function createWindow () {
 
   mainWindow = new BrowserWindow({
-    width: 1201,
+    width: 1204,
     height: 805,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      sandbox: false,
+      contextIsolation: false, // Включает nodejs даже в новом electron
+      nodeIntegrationInWorker: true,
+      webSecurity: false,
+      allowRunningInsecureContent: true,
     },
-    resizable: false
+    resizable: false,
+    autoHideMenuBar: true
   })
 
   mainWindow.loadURL('http://localhost:3000')
