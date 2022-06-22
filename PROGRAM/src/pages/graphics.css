@@ -86,6 +86,32 @@
     overflow-y: scroll;
 }
 
+#frame0-1-0, #frame0-2-0, #frame0-3-0, #frame0-4-0, #frame0-5-0{
+    display: none;
+    width: 640px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+
+    padding: 2px;
+    background: white;
+    /*box-shadow: 0 0 0 1px black;*/
+}
+
+#frame1-1-0, #frame1-2-0, #frame1-3-0, #frame1-4-0, #frame1-5-0{
+    display: none;
+    width: 640px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+
+    padding: 2px;
+    background: white;
+    /*box-shadow: 0 0 0 1px black;*/
+}
+
 #frame0-1-1 {
     display: none;
     width: 640px;
@@ -96,7 +122,7 @@
 
     padding: 2px;
     background: white;
-    /* box-shadow: 0 0 0 1px black; */
+     box-shadow: 0 0 0 1px black;
 }
 
 #frame0-1-2 {
@@ -1701,7 +1727,7 @@ h3 {
     display: inline-block;
     font: bold 12px Arial, sans-serif;
     margin-left: 10px;
-    margin-bottom: -8px;
+    /*margin-bottom: -8px;*/
     margin-top: 4px;
     padding: 10px 0;
     text-align: center;

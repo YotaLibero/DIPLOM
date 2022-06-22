@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from "react";
 import './create.css';
 import {Link, NavLink} from "react-router-dom";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 
 import "xlsx";
 import "jquery";
@@ -12,8 +12,105 @@ import Parser from "../modalswin/parser";
 import Add_Gen from "../modalswin/add_gen";
 import Choice_Gen from "../modalswin/choice_gen";
 import Generation from "../modalswin/generation";
+// import readXlsxFile from "read-excel-file";
+// import LineChart from "../charts/LineChart";
+// import {getValue} from "@testing-library/user-event/dist/utils";
+import Chart from "../charts/Chart";
+// import { Chart } from "../charts/Chart";
 
-//<Button className="import_data"><span>Импорт данных</span></Button>
+import { LineChart, Line } from 'recharts';
+import CreateLineChart from "../charts/CreateLineCharts";
+import CreateLineChart_1 from "../charts/CreateLineCharts_1";
+import CreateLineChart_2 from "../charts/CreateLineCharts_2";
+import CreateLineChart_3 from "../charts/CreateLineCharts_3";
+
+
+
+const handleFile = async (e) => {
+    // const file = e.target.files[0];
+    document.getElementById('path_file').value = document.getElementById('excel_file').value;
+    const DaTa = await e.arrayBuffer();
+    const workbook = XLSX.read(DaTa);
+
+
+    const sheet_name = workbook.SheetNames;
+    const sheet_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name[0]], {header:1});
+    console.log(sheet_data);
+
+    const json = XLSX.utils.sheet_to_json(sheet_data);
+    console.log(json);
+
+    let i = 0;
+    let headers = [];
+    let json_object = [];
+    sheet_data.map((row, index) => {
+        if (i === 0) {
+            headers = row;
+        }
+        if (i > 0) {
+            const temp = {};
+            for (let x = 0; x < row.length; x++) {
+                temp[headers[x]] = row[x];
+            }
+            json_object.push(temp);
+        }
+        i++;
+    });
+    const json_array = JSON.stringify(json_object, null, 2);
+    console.log(json_array);
+
+    let count = 0;
+    if(sheet_data.length > 0) {
+        for(let row = 0; row < sheet_data.length; row++) {
+            for(let cell = 0; cell < sheet_data[row].length; cell++) {
+                count += 1;
+            }
+        }
+        let columns_table = count / sheet_data.length;
+        console.log(columns_table.toString());
+
+        // document.getElementById("frame02").style.display = "block";
+
+        if (columns_table === 4) {
+            document.getElementById("frame02").style.display = "block";
+            document.getElementById("frame02").style.height = "275px";
+            document.getElementById("GEN_1").style.display = "block";
+            document.getElementById("GEN_2").style.display = "block";
+            document.getElementById("GEN_3").style.display = "block";
+            document.getElementById("GEN_4").style.display = "block";
+            document.getElementById("GEN_5").style.display = "none";
+
+            document.getElementById("r-frame0").style.display = "block";
+            document.getElementById("r-frame0").style.height = "593px";
+            document.getElementById("r-frame1").style.display = "block";
+            document.getElementById("r-frame2").style.display = "block";
+            document.getElementById("r-frame3").style.display = "block";
+            document.getElementById("r-frame4").style.display = "block";
+            document.getElementById("r-frame5").style.display = "none";
+        }
+        if (columns_table === 5) {
+            document.getElementById("frame02").style.display = "block";
+            document.getElementById("frame02").style.height = "340px";
+            document.getElementById("GEN_1").style.display = "block";
+            document.getElementById("GEN_2").style.display = "block";
+            document.getElementById("GEN_3").style.display = "block";
+            document.getElementById("GEN_4").style.display = "block";
+            document.getElementById("GEN_5").style.display = "block";
+
+            document.getElementById("r-frame0").style.display = "block";
+            document.getElementById("r-frame0").style.height = "740px";
+            document.getElementById("r-frame1").style.display = "block";
+            document.getElementById("r-frame2").style.display = "block";
+            document.getElementById("r-frame3").style.display = "block";
+            document.getElementById("r-frame4").style.display = "block";
+            document.getElementById("r-frame5").style.display = "block";
+        }
+        document.getElementById("frame03").style.display = "block";
+        document.getElementById("frame04").style.display = "block";
+    }
+}
+
+
 class CreateWin extends React.Component {
 
     state = {
@@ -26,6 +123,8 @@ class CreateWin extends React.Component {
     openModal = () => {this.setState({ isOpen: true });}
     handleSubmit = () => {
         console.log('Submit function!');
+        document.getElementById('frame02').style.display = "block";
+        document.getElementById('frame03').style.display = "block";
         this.setState({ isOpen: false });
     }
     handleCancel = () => {
@@ -58,6 +157,9 @@ class CreateWin extends React.Component {
     openModal4 = () => {this.setState({ isOpen4: true });}
     handleSubmit4 = () => {
         console.log('Submit function!');
+        document.getElementById('frame02').style.display = "block";
+        document.getElementById('frame03').style.display = "none";
+        console.log()
         this.setState({ isOpen4: false });
     }
     handleCancel4 = () => {
@@ -79,45 +181,11 @@ class CreateWin extends React.Component {
                                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                                                id="excel_file" onClick={() => {
                                             console.log('Хоть что-то...')
-                                        }} onChange={() => {
-                                            document.getElementById('path_file').value = document.getElementById('excel_file').value;
-                                            const excel_file = document.getElementById('excel_file');
-                                            const XLSX = require('xlsx') ;
-                                            let columns_table = 0;
-                                            // сюда попадает
-                                            let data = excel_file.target.result;
-                                            let work_book = XLSX.read(data, {type: 'binary'});
-                                            let sheet_name = work_book.SheetNames;
-                                            let sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {header: 1});
-                                            console.log(sheet_data);
-                                            excel_file.addEventListener('change', excel_file => {
-                                                let reader = new FileReader();
-                                                reader.readAsArrayBuffer(excel_file.target.files[0]);
-                                                reader.onload = function (excel_file) {
-
-
-                                                    let count = 0;
-                                                    console.log(count);
-                                                    // сюда уже не попадает...
-                                                    if (sheet_data.length > 0) {
-                                                        let table_output = '<table class="table">';
-                                                        for (let row = 0; row < sheet_data.length; row++) {
-                                                            table_output += '<tr>';
-                                                            for (let cell = 0; cell < sheet_data[row].length; cell++) {
-                                                                table_output += '<td>' + sheet_data[row][cell] + '</td>';
-                                                                count += 1;
-                                                                console.log(count);
-                                                            }
-                                                            table_output += '</tr>';
-                                                        }
-                                                        table_output += '</table>';
-                                                        columns_table = count / sheet_data.length;
-                                                        console.log(columns_table.toString());
-                                                    }
-                                                }
-                                            })
-                                            console.log(columns_table.toString());
-                                        }}/>
+                                        }} onChange={(e) => {
+                                            const file = e.target.files[0];
+                                            console.log(file);
+                                            handleFile(file);
+                                        }} />
                                     </label>
                                     <div className="text-field">
                                         <input className="text-field__input" type="text" id="path_file"
@@ -138,11 +206,11 @@ class CreateWin extends React.Component {
                                                            className="closing-button-21"><span>Импорт данных</span>
                                                         <input type="file"
                                                                accept=".dat" id="dat_file" multiple="multiple" onChange={() => {
-                                                                   let inputFile = document.getElementById('dat_file').files;
-                                                                   console.log(inputFile.length - 1);
-                                                                   document.getElementById('path_file_dat').value = inputFile[0].name + ' – ' + inputFile[inputFile.length - 1].name;
-                                                                   console.log(document.getElementById('dat_file').files);
-                                                                   console.log(inputFile[1].name.toString())
+                                                            let inputFile = document.getElementById('dat_file').files;
+                                                            console.log(inputFile.length - 1);
+                                                            document.getElementById('path_file_dat').value = inputFile[0].name + ' – ' + inputFile[inputFile.length - 1].name;
+                                                            console.log(document.getElementById('dat_file').files);
+                                                            console.log(inputFile[1].name.toString());
                                                         }}/>
                                                     </label>
                                                 </ul>
@@ -282,6 +350,14 @@ class CreateWin extends React.Component {
                                 </ul>
                             </div>
                             <div id="disp_tmp_path"></div>
+                            <div id='frame04'>
+                                <table>
+                                    <tr>
+                                        <td><label className="param_lab">Количество тактов:</label></td>
+                                        <td><Input type="number" className="param_tex_tacts" name="firstname"/></td>
+                                    </tr>
+                                </table>
+                            </div>
                             <div id="frame03">
                                 <label htmlFor="excel_file_y_vnesh"
                                        className="closing-button-04"><span>Импорт рядов внешних измерений</span>
@@ -301,10 +377,18 @@ class CreateWin extends React.Component {
                         </td>
                         <td id="rightcol">
                             <div id="r-frame0">
-                                <div id="r-frame1"></div>
-                                <div id="r-frame2"></div>
-                                <div id="r-frame3"></div>
-                                <div id="r-frame4"></div>
+                                <div id="r-frame1">
+                                    <CreateLineChart />
+                                </div>
+                                <div id="r-frame2">
+                                    <CreateLineChart_1 />
+                                </div>
+                                <div id="r-frame3">
+                                    <CreateLineChart_2 />
+                                </div>
+                                <div id="r-frame4">
+                                    <CreateLineChart_3 />
+                                </div>
                                 <div id="r-frame5"></div>
                             </div>
                         </td>

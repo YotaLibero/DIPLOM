@@ -1,65 +1,65 @@
-#r-frame0 {
-  display: none;
-  width: 550px;
-	height: 780px;
-  margin-top: 12px;
-	margin-left: -5px;
-	margin-right: 15px;
+/*#r-frame0 {*/
+/*  display: none;*/
+/*  width: 550px;*/
+/*	height: 780px;*/
+/*  margin-top: 12px;*/
+/*	margin-left: -5px;*/
+/*	margin-right: 15px;*/
 
-	padding: 2px;
-	background: white;
-	box-shadow: 0 0 0 1px black;
-}
-#r-frame1 {
-	display: none;
-  width: 536px;
-	height: 149px;
-  margin: 5px;
+/*	padding: 2px;*/
+/*	background: white;*/
+/*	box-shadow: 0 0 0 1px black;*/
+/*}*/
+/*#r-frame1 {*/
+/*	display: none;*/
+/*  width: 536px;*/
+/*	height: 149px;*/
+/*  margin: 5px;*/
 
-	padding: 2px;
-	background: #EBEBEB;
-	box-shadow: 0 0 0 1px black;
-}
-#r-frame2 {
-	display: none;
-  width: 536px;
-	height: 149px;
-  margin: 5px;
+/*	padding: 2px;*/
+/*	background: #EBEBEB;*/
+/*	box-shadow: 0 0 0 1px black;*/
+/*}*/
+/*#r-frame2 {*/
+/*	display: none;*/
+/*  width: 536px;*/
+/*	height: 149px;*/
+/*  margin: 5px;*/
 
-	padding: 2px;
-	background: #EBEBEB;
-	box-shadow: 0 0 0 1px black;
-}
-#r-frame3 {
-	display: none;
-  width: 536px;
-	height: 149px;
-  margin: 5px;
+/*	padding: 2px;*/
+/*	background: #EBEBEB;*/
+/*	box-shadow: 0 0 0 1px black;*/
+/*}*/
+/*#r-frame3 {*/
+/*	display: none;*/
+/*  width: 536px;*/
+/*	height: 149px;*/
+/*  margin: 5px;*/
 
-	padding: 2px;
-	background: #EBEBEB;
-	box-shadow: 0 0 0 1px black;
-}
-#r-frame4 {
-	display: none;
-  width: 536px;
-	height: 149px;
-  margin: 5px;
+/*	padding: 2px;*/
+/*	background: #EBEBEB;*/
+/*	box-shadow: 0 0 0 1px black;*/
+/*}*/
+/*#r-frame4 {*/
+/*	display: none;*/
+/*  width: 536px;*/
+/*	height: 149px;*/
+/*  margin: 5px;*/
 
-	padding: 2px;
-	background: #EBEBEB;
-	box-shadow: 0 0 0 1px black;
-}
-#r-frame5 {
-	display: none;
-  width: 536px;
-	height: 149px;
-  margin: 5px;
+/*	padding: 2px;*/
+/*	background: #EBEBEB;*/
+/*	box-shadow: 0 0 0 1px black;*/
+/*}*/
+/*#r-frame5 {*/
+/*	display: none;*/
+/*  width: 536px;*/
+/*	height: 149px;*/
+/*  margin: 5px;*/
 
-	padding: 2px;
-	background: #EBEBEB;
-	box-shadow: 0 0 0 1px black;
-}
+/*	padding: 2px;*/
+/*	background: #EBEBEB;*/
+/*	box-shadow: 0 0 0 1px black;*/
+/*}*/
 
 #frame2 {
 	width: 516px;

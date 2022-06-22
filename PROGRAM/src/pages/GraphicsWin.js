@@ -4,6 +4,40 @@ import {Link, NavLink} from "react-router-dom";
 import Choice_Gen from "../modalswin/choice_gen";
 import Button from "../components/Button";
 import Save_As from "../modalswin/save_as";
+import LineChart from "../charts/LineChart";
+
+
+function showOrHide(cb, frame, subframe, nameframe) {
+    cb = document.getElementById(cb);
+    frame = document.getElementById(frame);
+    subframe = document.getElementById(subframe);
+    nameframe = document.getElementById(nameframe);
+    if (cb.checked) {
+        frame.style.display = "block";
+        subframe.style.display = "block";
+        nameframe.style.display = "block";
+    }
+    else {
+        frame.style.display = "none";
+        subframe.style.display = "none";
+        nameframe.style.display = "none";
+    }
+}
+// onchange='showOrHide("gen11-1", "frame1-1-1", "frame1-1-2")'
+
+function showVsHide(cb, frame, frame1) {
+    cb = document.getElementById(cb);
+    frame = document.getElementById(frame);
+    frame1 = document.getElementById(frame1);
+    if (cb.checked) {
+        frame.style.display = "block";
+        frame1.style.display = "none";
+    }
+    else {
+        frame.style.display = "none";
+        frame1.style.display = "block";
+    }
+}
 
 export class GraphicsWin extends React.Component {
 
@@ -25,28 +59,36 @@ export class GraphicsWin extends React.Component {
                     <td className="left-win">
                         <div id="frame0">
                             <script src="https://d3js.org/d3.v4.js"></script>
-                            <div id="frame0-1-1">
-                                <div id="dataviz_axisZoom"></div>
-                            </div>
+                            <div id="frame0-1-0"><h2>Генератор 1</h2></div>
+                            <div id="frame0-1-1"></div>
                             <div id="frame0-1-2"></div>
+                            <div id="frame0-2-0"><h2>Генератор 2</h2></div>
                             <div id="frame0-2-1"></div>
                             <div id="frame0-2-2"></div>
+                            <div id="frame0-3-0"><h2>Генератор 3</h2></div>
                             <div id="frame0-3-1"></div>
                             <div id="frame0-3-2"></div>
+                            <div id="frame0-4-0"><h2>Генератор 4</h2></div>
                             <div id="frame0-4-1"></div>
                             <div id="frame0-4-2"></div>
+                            <div id="frame0-5-0"><h2>Генератор 5</h2></div>
                             <div id="frame0-5-1"></div>
                             <div id="frame0-5-2"></div>
                         </div>
                         <div id="frame1">
+                            <div id="frame1-1-0"><h2>График 1</h2></div>
                             <div id="frame1-1-1"></div>
                             <div id="frame1-1-2"></div>
+                            <div id="frame1-2-0"><h2>График 2</h2></div>
                             <div id="frame1-2-1"></div>
                             <div id="frame1-2-2"></div>
+                            <div id="frame1-3-0"><h2>График 3</h2></div>
                             <div id="frame1-3-1"></div>
                             <div id="frame1-3-2"></div>
+                            <div id="frame1-4-0"><h2>График 4</h2></div>
                             <div id="frame1-4-1"></div>
                             <div id="frame1-4-2"></div>
+                            <div id="frame1-5-0"><h2>График 5</h2></div>
                             <div id="frame1-5-1"></div>
                             <div id="frame1-5-2"></div>
 
@@ -73,10 +115,10 @@ export class GraphicsWin extends React.Component {
                                 <div id="frame3">
                                     <div className="tabs">
                                         <input type="radio" name="tab-btn" id="tab-btn-1"
-                                               onChange='showVsHide("tab-btn-1", "frame0", "frame1")' value="" />
+                                               onChange={()=>showVsHide("tab-btn-1", "frame0", "frame1")} value="" />
                                         <label htmlFor="tab-btn-1">Типовые графики</label>
                                         <input type="radio" name="tab-btn" id="tab-btn-2"
-                                               onChange='showVsHide("tab-btn-2", "frame1", "frame0")' value="" />
+                                               onChange={()=>showVsHide("tab-btn-2", "frame1", "frame0")} value="" />
                                         <label htmlFor="tab-btn-2">Уникальные графики</label>
                                         <div id="content-1">
                                             <div id="frame3-1">
@@ -84,31 +126,31 @@ export class GraphicsWin extends React.Component {
                                                 <div className="checkbox-list">
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-1" type="checkbox"
-                                                               onChange='showOrHide("gen11-1", "frame0-1-1", "frame0-1-2")'
+                                                               onChange={()=>showOrHide("gen11-1", "frame0-1-1", "frame0-1-2", "frame0-1-0")}
                                                                name="checkbox" value="1"/>
                                                         <label htmlFor="gen11-1">1</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-2" type="checkbox"
-                                                               onChange='showOrHide("gen11-2", "frame0-2-1", "frame0-2-2")'
+                                                               onChange={()=>showOrHide("gen11-2", "frame0-2-1", "frame0-2-2", "frame0-2-0")}
                                                                name="checkbox" value="2"/>
                                                         <label htmlFor="gen11-2">2</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-3" type="checkbox"
-                                                               onChange='showOrHide("gen11-3", "frame0-3-1", "frame0-3-2")'
+                                                               onChange={()=>showOrHide("gen11-3", "frame0-3-1", "frame0-3-2", "frame0-3-0")}
                                                                name="checkbox" value="3"/>
                                                         <label htmlFor="gen11-3">3</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-4" type="checkbox"
-                                                               onChange='showOrHide("gen11-4", "frame0-4-1", "frame0-4-2")'
+                                                               onChange={()=>showOrHide("gen11-4", "frame0-4-1", "frame0-4-2", "frame0-4-0")}
                                                                name="checkbox" value="4"/>
                                                         <label htmlFor="gen11-4">4</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-5" type="checkbox"
-                                                               onChange='showOrHide("gen11-5", "frame0-5-1", "frame0-5-2")'
+                                                               onChange={()=>showOrHide("gen11-5", "frame0-5-1", "frame0-5-2", "frame0-5-0")}
                                                                name="checkbox" value="5"/>
                                                         <label htmlFor="gen11-5">5</label>
                                                     </div>
@@ -198,7 +240,7 @@ export class GraphicsWin extends React.Component {
                                                                 <div
                                                                     className="form_checkbox_btn_graphic">
                                                                     <input id="gen1" type="checkbox"
-                                                                           onChange='showOrHide("gen1", "frame1-1-1", "frame1-1-2")'
+                                                                           onChange={()=>showOrHide("gen1", "frame1-1-1", "frame1-1-2", "frame1-1-0")}
                                                                            name="checkbox"
                                                                            value="1"/>
                                                                     <label htmlFor="gen1">Отобразить
@@ -354,7 +396,7 @@ export class GraphicsWin extends React.Component {
                                                                 <div
                                                                     className="form_checkbox_btn_graphic">
                                                                     <input id="gen2" type="checkbox"
-                                                                           onChange='showOrHide("gen2", "frame1-2-1", "frame1-2-2")'
+                                                                           onChange={()=>showOrHide("gen2", "frame1-2-1", "frame1-2-2", "frame1-2-0")}
                                                                            name="checkbox"
                                                                            value="2"/>
                                                                     <label htmlFor="gen2">Отобразить
@@ -510,7 +552,7 @@ export class GraphicsWin extends React.Component {
                                                                 <div
                                                                     className="form_checkbox_btn_graphic">
                                                                     <input id="gen3" type="checkbox"
-                                                                           onChange='showOrHide("gen3", "frame1-3-1", "frame1-3-2")'
+                                                                           onChange={()=>showOrHide("gen3", "frame1-3-1", "frame1-3-2", "frame1-3-0")}
                                                                            name="checkbox"
                                                                            value="3"/>
                                                                     <label htmlFor="gen3">Отобразить
@@ -666,7 +708,7 @@ export class GraphicsWin extends React.Component {
                                                                 <div
                                                                     className="form_checkbox_btn_graphic">
                                                                     <input id="gen4" type="checkbox"
-                                                                           onChange='showOrHide("gen4", "frame1-4-1", "frame1-4-2")'
+                                                                           onChange={()=>showOrHide("gen4", "frame1-4-1", "frame1-4-2", "frame1-4-0")}
                                                                            name="checkbox"
                                                                            value="4"/>
                                                                     <label htmlFor="gen4">Отобразить
@@ -822,7 +864,7 @@ export class GraphicsWin extends React.Component {
                                                                 <div
                                                                     className="form_checkbox_btn_graphic">
                                                                     <input id="gen5" type="checkbox"
-                                                                           onChange='showOrHide("gen5", "frame1-5-1", "frame1-5-2")'
+                                                                           onChange={()=>showOrHide("gen5", "frame1-5-1", "frame1-5-2", "frame1-5-0")}
                                                                            name="checkbox"
                                                                            value="5"/>
                                                                     <label htmlFor="gen5">Отобразить

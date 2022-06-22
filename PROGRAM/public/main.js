@@ -16,6 +16,7 @@ function createWindow () {
       nodeIntegrationInWorker: true,
       webSecurity: false,
       allowRunningInsecureContent: true,
+      preload: __dirname + '/preload.js'
     },
     resizable: false,
     autoHideMenuBar: true

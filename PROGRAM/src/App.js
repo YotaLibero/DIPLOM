@@ -8,7 +8,7 @@ import './App.css';
 import {MainWin} from "./pages/MainWin";
 import CreateWin from "./pages/CreateWin";
 import {MainMenu} from "./components/MainMenu";
-import {OpenWin} from "./pages/OpenWin";
+import OpenWin from "./pages/OpenWin";
 import {EditWin} from "./pages/EditWin";
 import {GraphicsWin} from "./pages/GraphicsWin";
 import {TablesWin} from "./pages/TablesWin";
