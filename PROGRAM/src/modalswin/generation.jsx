@@ -45,37 +45,6 @@ const Generation = ({
                             <div id="saveframe">
                                 <table>
                                 <div id="frame141">
-                                    <tr>
-                                        <table>
-                                            <tr>
-                                        <td>
-                                            <label className="save_lab">
-                                                Название эксперимента:
-                                                <input type="text" className="save_tex" name="firstname"/>
-                                            </label>
-                                        </td>
-                                            </tr>
-                                        </table>
-                                        <td>
-                                            <table cellSpacing="0" id="frame14-1">
-                                                <tr>
-                                                    <td id="fr-14-1">
-                                                        <label htmlFor={'choice_folder'} className="closing-button-2"><span>Выбрать папку</span>
-                                                            <Input className={'choice_folder'} type="file" webkitdirectory onChange={() => {
-                                                                document.getElementById('text-field__input-1').value = document.getElementById('choice_folder').value;
-                                                            }} />
-                                                        </label>
-                                                    </td>
-                                                    <td id="fr-14-2">
-                                                        <div className="text-field-11">
-                                                            <input className="text-field__input-11" type="text" name="login" id="login"
-                                                                   placeholder="Login" value="Путь к папке" readOnly />
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
                                     <div className="generations">
                                         <table>
                                             <tr className={'generations_parameters'}>
@@ -197,6 +166,7 @@ const Generation = ({
                                     </div>
                                 </div>
                             </table>
+                                <Button className="generation_btn-2" onClick={onCancel4} ><span>Сгенерировать</span></Button>
                             </div>
                             <table>
                                 <tr>
@@ -215,6 +185,34 @@ const Generation = ({
                                     <tr>
                                         <div className="trend-inline">
                                                     <table>
+                                                        <tr>
+                                                            <td><label className="param_lab">a:</label>
+                                                            </td>
+                                                            <td><Input type="number" className="param_tex"
+                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                            <td><label className="param_lab">b:</label>
+                                                            </td>
+                                                            <td><Input type="number" className="param_tex"
+                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                            <td><label className="param_lab">c:</label>
+                                                            </td>
+                                                            <td><Input type="number" className="param_tex"
+                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label className="param_lab">a:</label>
+                                                            </td>
+                                                            <td><Input type="number" className="param_tex"
+                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                            <td><label className="param_lab">b:</label>
+                                                            </td>
+                                                            <td><Input type="number" className="param_tex"
+                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                            <td><label className="param_lab">c:</label>
+                                                            </td>
+                                                            <td><Input type="number" className="param_tex"
+                                                                       name="firstname" defaultValue={0.0}/></td>
+                                                        </tr>
                                                         <tr>
                                                             <td><label className="param_lab">a:</label>
                                                             </td>

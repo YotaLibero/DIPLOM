@@ -629,7 +629,7 @@ h2 {
 
 #frame141 {
     width: 1037px;
-    height: 255px;
+    height: 185px;
     margin-bottom: 10px;
     margin-top: 0px;
     margin-left: 15px;
@@ -733,7 +733,7 @@ input:checked + .slider:before {
     float: right;
     margin-right: 3px;
 
-    margin-top: 0px;
+    margin-top: -47px;
     margin-bottom: 5px;
     margin-left: 16px;
     font: bold 12px Arial, sans-serif;
@@ -1044,9 +1044,9 @@ input:checked + .slider:before {
 
 #generation-1{
     width: 377px;
-    height: 70px;
+    height: 127px;
     margin-bottom: 10px;
-    margin-top: 0px;
+    margin-top: 40px;
     margin-left: 15px;
     padding: 2px;
     padding-left: 10px;
@@ -1080,7 +1080,7 @@ input:checked + .slider:before {
     width: 635px;
     height: 325px;
     margin-bottom: 10px;
-    margin-top: -330px;
+    margin-top: -386px;
     margin-left: 417px;
     padding: 2px;
     padding-left: 10px;
@@ -1106,6 +1106,29 @@ input:checked + .slider:before {
     border: none;
     cursor: pointer;
 }
+
 .generation_btn-1:hover, .generation_btn-1:focus {
+    background-color: #006149;
+}
+
+.generation_btn-2 {
+    background-color: #009773;
+    color: white;
+    box-shadow: 0 0 0 1px black;
+    padding: 10px 0;
+    width: 150px;
+    float: right;
+    margin-right: 3px;
+
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 16px;
+    font: bold 12px Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: none;
+    cursor: pointer;
+}
+.generation_btn-2:hover, .generation_btn-2:focus {
     background-color: #006149;
 }
