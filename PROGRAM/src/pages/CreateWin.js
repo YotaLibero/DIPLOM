@@ -1,7 +1,9 @@
+
 import React, {Fragment, useState} from "react";
 import './create.css';
 import {Link, NavLink} from "react-router-dom";
 // import ReactDOM from "react-dom";
+
 
 import "xlsx";
 import "jquery";
@@ -23,8 +25,6 @@ import CreateLineChart from "../charts/CreateLineCharts";
 import CreateLineChart_1 from "../charts/CreateLineCharts_1";
 import CreateLineChart_2 from "../charts/CreateLineCharts_2";
 import CreateLineChart_3 from "../charts/CreateLineCharts_3";
-
-
 
 const handleFile = async (e) => {
     // const file = e.target.files[0];
@@ -111,6 +111,8 @@ const handleFile = async (e) => {
 }
 
 
+
+
 class CreateWin extends React.Component {
 
     state = {
@@ -167,6 +169,37 @@ class CreateWin extends React.Component {
         this.setState({ isOpen4: false });
     }
 
+    importData = () => {
+        const remote = window.require("@electron/remote");
+        const { getCurrentWebContents, getCurrentWindow, dialog } = remote;
+
+        const webContents = getCurrentWebContents();
+        const currentWindow = getCurrentWindow();
+
+        const file = dialog.showOpenDialogSync(currentWindow, { properties: ['openFile', 'createDirectory'] })
+        document.getElementById('path_file').value = file
+    }
+
+    importDatFiles = () => {
+        const remote = window.require("@electron/remote");
+        const { getCurrentWebContents, getCurrentWindow, dialog } = remote;
+
+        const webContents = getCurrentWebContents();
+        const currentWindow = getCurrentWindow();
+
+        const file = dialog.showOpenDialogSync(currentWindow, { 
+            filters: [
+                { name: 'Dat Files', extensions: ['dat'] },
+                { name: 'All Files', extensions: ['*'] } ], 
+            properties: ['openFile', 'createDirectory', 'multiSelections']})
+        if(file.length > 1) {
+            document.getElementById('path_file_dat').value = file[0] + ' – ' + file[file.length - 1]
+        }
+        else {
+            document.getElementById('path_file_dat').value = file[0]
+        }
+    }
+
     render() {
         return (
             <Fragment>
@@ -175,9 +208,9 @@ class CreateWin extends React.Component {
                         <td id="createexp">
                             <div id="frame01">
                                 <div className="fr-1">
-                                    <label htmlFor="excel_file"
-                                           id="import_data"><span>Импорт данных</span>
-                                        <input type="file"
+                                    {/* <label htmlFor="excel_file"
+                                           id="import_data"><span>Импорт данных</span> */}
+                                        {/* <input type="file"
                                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                                                id="excel_file" onClick={() => {
                                             console.log('Хоть что-то...')
@@ -185,8 +218,9 @@ class CreateWin extends React.Component {
                                             const file = e.target.files[0];
                                             console.log(file);
                                             handleFile(file);
-                                        }} />
-                                    </label>
+                                        }} /> */}
+                                        <Button id="import_data" onClick={this.importData}><span>Импорт данных</span></Button>
+                                    {/* </label> */}
                                     <div className="text-field">
                                         <input className="text-field__input" type="text" id="path_file"
                                                value="Путь к файлу"
@@ -202,7 +236,7 @@ class CreateWin extends React.Component {
                                         <div id="modryad">
                                             <div id="frame030">
                                                 <ul>
-                                                    <label htmlFor="dat_file"
+                                                    {/* <label htmlFor="dat_file"
                                                            className="closing-button-21"><span>Импорт данных</span>
                                                         <input type="file"
                                                                accept=".dat" id="dat_file" multiple="multiple" onChange={() => {
@@ -212,7 +246,8 @@ class CreateWin extends React.Component {
                                                             console.log(document.getElementById('dat_file').files);
                                                             console.log(inputFile[1].name.toString());
                                                         }}/>
-                                                    </label>
+                                                    </label> */}
+                                                    <Button id="dat_file" className="closing-button-21" onClick={this.importDatFiles}><span>Импорт данных</span></Button>
                                                 </ul>
                                                 <div className="text-field">
                                                     <input className="text-field__input" type="text"

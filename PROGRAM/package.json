@@ -2,9 +2,10 @@
   "name": "sos",
   "version": "0.1.0",
   "private": true,
-  "main": "./public/main.js",
+  "main": "./src/main.js",
   "homepage": "./",
   "dependencies": {
+    "@electron/remote": "^2.0.8",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -66,7 +67,7 @@
   "devDependencies": {
     "concurrently": "^7.2.2",
     "cross-env": "^7.0.3",
-    "electron": "^19.0.4",
+    "electron": "^19.0.6",
     "electron-builder": "^23.0.3",
     "react-error-overlay": "^6.0.9",
     "wait-on": "^6.0.1"

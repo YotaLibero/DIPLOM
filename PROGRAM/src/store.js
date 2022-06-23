@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import createExperimentReducer from './CreateExperimentReducer.js';
+import createExperimentReducer from './reducers/CreateExperimentReducer';
 
 
 const rootReducer = combineReducers({

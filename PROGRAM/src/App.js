@@ -14,12 +14,16 @@ import {GraphicsWin} from "./pages/GraphicsWin";
 import {TablesWin} from "./pages/TablesWin";
 // import React from "@types/react";
 
+
+
 function App() {
   // const mainmenu = "mainmenu";
   return (
       <BrowserRouter>
           <MainMenu/>
           <div id="right-container">
+
+
               <Switch>
                   <Route path={"/"} exact component={MainWin}/>
                   <Route path={"/create"} exact component={CreateWin}/>

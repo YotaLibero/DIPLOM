@@ -1,6 +1,6 @@
 const {app, BrowserWindow} = require('electron')
 
-require('../ExpressApp')
+const path = require('path')
 
 let mainWindow;
 
@@ -16,7 +16,9 @@ function createWindow () {
       nodeIntegrationInWorker: true,
       webSecurity: false,
       allowRunningInsecureContent: true,
-      preload: __dirname + '/preload.js'
+      nodeIntegrationInSubFrames: true,
+      enableRemoteModule: true,
+      preload: path.join(__dirname, 'preload.js')
     },
     resizable: false,
     autoHideMenuBar: true
@@ -28,6 +30,10 @@ function createWindow () {
   mainWindow.on('closed', function () {
     mainWindow = null
   })
+
+  require("@electron/remote/main").initialize();
+  const mainRemote = require("@electron/remote/main");
+  mainRemote.enable(mainWindow.webContents);
 }
 
 app.on('ready', createWindow)
@@ -43,3 +49,6 @@ app.on('activate', function () {
     createWindow()
   }
 })
+
+
+module.exports = {mainWindow}

@@ -31,7 +31,7 @@ const Generation = ({
     const getValue = () => {
         return currentChoiceGen ? options.find(c => c.value === currentChoiceGen) : ''
     }
-    const OnChange = (newValue: any) => {
+    const OnChange = (newValue) => {
         setCurrentChoiceGen(newValue.value)
     }
 
