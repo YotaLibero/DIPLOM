@@ -7,5 +7,4 @@ git clone https://github.com/YotaLibero/DIPLOM
 cd DIPLOM/PROGRAM
 npm install --force
 npm run electron:start
-
 ```
