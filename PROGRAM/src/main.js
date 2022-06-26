@@ -2,6 +2,8 @@ const {app, BrowserWindow} = require('electron')
 
 const path = require('path')
 
+require('./ExpressApp')
+
 let mainWindow;
 
 function createWindow () {

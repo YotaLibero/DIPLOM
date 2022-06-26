@@ -9,6 +9,7 @@ var ExpressApp = express();
 ExpressApp.use(bodyParser.urlencoded({
     extended: true,
 }));
+ExpressApp.use(bodyParser.json())
 
 // Database configuration 
 const db_name = path.join(__dirname, "database.db");
