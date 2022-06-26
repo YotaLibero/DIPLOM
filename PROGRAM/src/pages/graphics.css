@@ -122,7 +122,7 @@
 
     padding: 2px;
     background: white;
-     box-shadow: 0 0 0 1px black;
+     /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-1-2 {
@@ -135,7 +135,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-2-1 {
@@ -148,7 +148,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-2-2 {
@@ -161,7 +161,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-3-1 {
@@ -174,7 +174,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-3-2 {
@@ -187,7 +187,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-4-1 {
@@ -200,7 +200,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-4-2 {
@@ -213,7 +213,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-5-1 {
@@ -226,7 +226,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame0-5-2 {
@@ -239,7 +239,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-1-1 {
@@ -252,7 +252,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-1-2 {
@@ -265,7 +265,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-2-1 {
@@ -278,7 +278,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-2-2 {
@@ -291,7 +291,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-3-1 {
@@ -304,7 +304,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-3-2 {
@@ -317,7 +317,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-4-1 {
@@ -330,7 +330,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-4-2 {
@@ -343,7 +343,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-5-1 {
@@ -356,7 +356,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame1-5-2 {
@@ -369,7 +369,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame2 {
@@ -382,7 +382,7 @@
 
     padding: 2px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame2-1 {
@@ -394,8 +394,9 @@
     margin-bottom: 5px;
 
     padding: 2px;
-    background: #EBEBEB;
-    box-shadow: 0 0 0 1px black;
+    /*background: #EBEBEB;*/
+    background: white;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame2-2 {
@@ -404,11 +405,12 @@
     height: 168px;
     margin-top: 6px;
     margin-left: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 
     padding: 2px;
-    background: #EBEBEB;
-    box-shadow: 0 0 0 1px black;
+    /*background: #EBEBEB;*/
+    background: white;
+    /*box-shadow: 0 0 0 1px black;*/
 }
 
 #frame3 {
@@ -1477,6 +1479,7 @@ h3 {
 
 .container-checkboxes-02 input[type="checkbox"]:not(:first-child) {
     margin-left: 20px;
+    display: block;
     margin-bottom: 5px;
     margin-top: 5px;
 }
@@ -2085,4 +2088,10 @@ input.datesave {
 }
 .save_btn:hover, .save_btn:focus {
     background-color: #006149;
+}
+
+.ost-disp {
+    padding-bottom: 10px;
+    /*margin-top: 13px;*/
+    font-size: 18px;
 }

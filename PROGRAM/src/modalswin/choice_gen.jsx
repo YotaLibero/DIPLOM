@@ -49,6 +49,100 @@ const options = [
     },
 ]
 
+function showOrHideAR(name, el1, el2, el3, el4, el5, el6, name1) {
+    const selected = document.querySelector('input[name="' + name.toString() + '"]:checked').value;
+    console.log(selected);
+    el1 = document.getElementById(el1);
+    el2 = document.getElementById(el2);
+    el3 = document.getElementById(el3);
+
+    el4 = document.getElementById(el4);
+    el5 = document.getElementById(el5);
+    el6 = document.getElementById(el6);
+    name1 = document.getElementById(name1);
+
+    if (selected == 0) {
+        el1.style.display = "none";
+        el2.style.display = "none";
+        el3.style.display = "none";
+
+        el4.style.display = "none";
+        el5.style.display = "none";
+        el6.style.display = "none";
+
+        name1.style.display = "none";
+    }
+    if (selected == 1) {
+        el1.style.display = "block";
+        el2.style.display = "none";
+        el3.style.display = "none";
+
+        el4.style.display = "block";
+        el5.style.display = "none";
+        el6.style.display = "none";
+
+        name1.style.display = "inline-block";
+    }
+    if (selected == 2) {
+        el1.style.display = "block";
+        el2.style.display = "block";
+        el3.style.display = "none";
+
+        el4.style.display = "block";
+        el5.style.display = "block";
+        el6.style.display = "none";
+
+        name1.style.display = "inline-block";
+    }
+    if (selected == 3) {
+        el1.style.display = "block";
+        el2.style.display = "block";
+        el3.style.display = "block";
+
+        el4.style.display = "block";
+        el5.style.display = "block";
+        el6.style.display = "block";
+
+        name1.style.display = "inline-block";
+    }
+}
+
+function showOrHideMA(name, el1, el2, el3, name1) {
+    const selected = document.querySelector('input[name="' + name.toString() + '"]:checked').value;
+    console.log(selected);
+    el1 = document.getElementById(el1);
+    el2 = document.getElementById(el2);
+    el3 = document.getElementById(el3);
+
+    name1 = document.getElementById(name1);
+
+    if (selected == 0) {
+        el1.style.display = "none";
+        el2.style.display = "none";
+
+        el3.style.display = "none";
+
+        name1.style.display = "none";
+    }
+    if (selected == 1) {
+        el1.style.display = "block";
+        el2.style.display = "none";
+
+        el3.style.display = "none";
+
+        name1.style.display = "inline-block";
+    }
+    if (selected == 2) {
+        el1.style.display = "block";
+        el2.style.display = "block";
+
+        el3.style.display = "block";
+
+        name1.style.display = "inline-block";
+    }
+}
+
+
 const Choice_Gen = ({
                      title2, isOpen2, onCancel2, onSubmit2,
                  }) => {
@@ -102,12 +196,12 @@ const Choice_Gen = ({
                                                             <input id="radio-ar-0"
                                                                    onChange='showOrHideAR("radio-1", "PHI_1", "PHI_2", "PHI_3", "Y_AR_1","Y_AR_2", "Y_AR_3", "MA_0")'
                                                                    type="radio" name="radio-1"
-                                                                   value="0"/>
+                                                                   value="0" disabled />
                                                             <label htmlFor="radio-ar-0">0</label>
                                                         </div>
                                                         <div className="form_radio_btn">
                                                             <input id="radio-ar-1"
-                                                                   onChange='showOrHideAR("radio-1", "PHI_1", "PHI_2", "PHI_3", "Y_AR_1","Y_AR_2", "Y_AR_3", "MA_0")'
+                                                                   onChange={() => showOrHideAR("radio-1", "PHI_1", "PHI_2", "PHI_3", "Y_AR_1","Y_AR_2", "Y_AR_3", "MA_0")}
                                                                    type="radio" name="radio-1"
                                                                    value="1" checked="checked"/>
                                                             <label htmlFor="radio-ar-1">1</label>
@@ -116,14 +210,14 @@ const Choice_Gen = ({
                                                             <input id="radio-ar-2"
                                                                    onChange='showOrHideAR("radio-1", "PHI_1", "PHI_2", "PHI_3", "Y_AR_1","Y_AR_2", "Y_AR_3","MA_0")'
                                                                    type="radio" name="radio-1"
-                                                                   value="2"/>
+                                                                   value="2" disabled/>
                                                             <label htmlFor="radio-ar-2">2</label>
                                                         </div>
                                                         <div className="form_radio_btn">
                                                             <input id="radio-ar-3"
                                                                    onChange='showOrHideAR("radio-1", "PHI_1", "PHI_2", "PHI_3", "Y_AR_1","Y_AR_2", "Y_AR_3", "MA_0")'
                                                                    type="radio" name="radio-1"
-                                                                   value="3"/>
+                                                                   value="3" disabled />
                                                             <label htmlFor="radio-ar-3">3</label>
                                                         </div>
                                                         <div className="AR">
@@ -141,13 +235,13 @@ const Choice_Gen = ({
                                                                                        className="param_lab">AR2:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0} readOnly />
+                                                                                       id={'A2'} name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                             <td><label id="PHI_3"
                                                                                        className="param_lab">AR3:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0} readOnly />
+                                                                                       id={'A3'} name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                         </tr>
                                                                     </td>
@@ -172,14 +266,14 @@ const Choice_Gen = ({
                                                                             </td>
                                                                             <td><Input type="number"
                                                                                        className="param_tex-1"
-                                                                                       name="firstname" defaultValue={0.0} readOnly />
+                                                                                       id={'AY2'} name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                             <td><label id="Y_AR_3"
                                                                                        className="param_lab-1">Y_3:</label>
                                                                             </td>
                                                                             <td><Input type="number"
                                                                                        className="param_tex-1"
-                                                                                       name="firstname" defaultValue={0.0} readOnly />
+                                                                                       id={'AY3'} name="firstname" defaultValue={0.0} readOnly />
                                                                             </td>
                                                                         </tr>
                                                                     </td>
@@ -194,7 +288,7 @@ const Choice_Gen = ({
                                                         <h3>Порядок:</h3>
                                                         <div id="MA_0" className="form_radio_btn">
                                                             <input id="radio-ma-0"
-                                                                   onChange='showOrHideMA("radio-2", "TETA_1", "TETA_2", "Y_MA_1", "AR_0")'
+                                                                   onChange={() => showOrHideMA("radio-2", "TETA_1", "TETA_2", "Y_MA_1", "AR_0")}
                                                                    type="radio" name="radio-2"
                                                                    value="0" checked="checked"/>
                                                             <label htmlFor="radio-ma-0">0</label>
@@ -203,14 +297,14 @@ const Choice_Gen = ({
                                                             <input id="radio-ma-1"
                                                                    onChange='showOrHideMA("radio-2", "TETA_1", "TETA_2", "Y_MA_1", "AR_0")'
                                                                    type="radio" name="radio-2"
-                                                                   value="1"/>
+                                                                   value="1" disabled />
                                                             <label htmlFor="radio-ma-1">1</label>
                                                         </div>
                                                         <div className="form_radio_btn">
                                                             <input id="radio-ma-2"
                                                                    onChange='showOrHideMA("radio-2", "TETA_1", "TETA_2", "Y_MA_1", "AR_0")'
                                                                    type="radio" name="radio-2"
-                                                                   value="2"/>
+                                                                   value="2" disabled />
                                                             <label htmlFor="radio-ma-2">2</label>
                                                         </div>
                                                         <div className="MA">
@@ -222,11 +316,13 @@ const Choice_Gen = ({
                                                                                        className="param_lab">MA1:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
+                                                                                       id={'T1'}
                                                                                        name="firstname" defaultValue={0.0} readOnly /></td>
                                                                             <td><label id="TETA_2"
                                                                                        className="param_lab">MA2:</label>
                                                                             </td>
                                                                             <td><Input type="number" className="param_tex"
+                                                                                       id={'T2'}
                                                                                        name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </td>
@@ -244,6 +340,7 @@ const Choice_Gen = ({
                                                                             </td>
                                                                             <td><Input type="text"
                                                                                        className="param_tex-1"
+                                                                                       id={'TY1'}
                                                                                        name="firstname" defaultValue={0.0} readOnly /></td>
                                                                         </tr>
                                                                     </table>
@@ -256,10 +353,10 @@ const Choice_Gen = ({
                                                                 <tr>
                                                                     <td>
                                                                         <tr>
-                                                                            <td><label className="param_lab-2">Мат
-                                                                                ожидание: </label></td>
-                                                                            <td><Input type="number" className="param_tex"
-                                                                                       name="firstname" defaultValue={0.0} readOnly /></td>
+                                                                            {/*<td><label className="param_lab-2">Мат*/}
+                                                                            {/*    ожидание: </label></td>*/}
+                                                                            {/*<td><Input type="number" className="param_tex"*/}
+                                                                            {/*           name="firstname" defaultValue={0.0} readOnly /></td>*/}
                                                                             <td><label
                                                                                 className="param_lab-2-1">Дисперсия: </label>
                                                                             </td>

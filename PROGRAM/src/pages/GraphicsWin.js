@@ -5,22 +5,27 @@ import Choice_Gen from "../modalswin/choice_gen";
 import Button from "../components/Button";
 import Save_As from "../modalswin/save_as";
 import LineChart from "../charts/LineChart";
+import AdControlLCh from "../charts/AdControlLCh";
+import AllLineCharts from "../charts/AllLineCharts";
+import Chart1 from "../GRAPHICCHARTS/Chart1/Chart1";
+import Chart2 from "../GRAPHICCHARTS/Chart2/Chart2";
+import Chart3 from "../GRAPHICCHARTS/Chart3/Chart3";
+import Chart4 from "../GRAPHICCHARTS/Chart4/Chart4";
+import Chart5 from "../GRAPHICCHARTS/Chart5/Chart5";
 
 
-function showOrHide(cb, frame, subframe, nameframe) {
+
+function showOrHide(cb, frame, subframe) {
     cb = document.getElementById(cb);
     frame = document.getElementById(frame);
     subframe = document.getElementById(subframe);
-    nameframe = document.getElementById(nameframe);
     if (cb.checked) {
         frame.style.display = "block";
         subframe.style.display = "block";
-        nameframe.style.display = "block";
     }
     else {
         frame.style.display = "none";
         subframe.style.display = "none";
-        nameframe.style.display = "none";
     }
 }
 // onchange='showOrHide("gen11-1", "frame1-1-1", "frame1-1-2")'
@@ -58,22 +63,21 @@ export class GraphicsWin extends React.Component {
                 <tr>
                     <td className="left-win">
                         <div id="frame0">
-                            <script src="https://d3js.org/d3.v4.js"></script>
                             <div id="frame0-1-0"><h2>Генератор 1</h2></div>
-                            <div id="frame0-1-1"></div>
-                            <div id="frame0-1-2"></div>
+                            <div id="frame0-1-1"><Chart1 /></div>
+                            {/*<div id="frame0-1-2"></div>*/}
                             <div id="frame0-2-0"><h2>Генератор 2</h2></div>
-                            <div id="frame0-2-1"></div>
-                            <div id="frame0-2-2"></div>
+                            <div id="frame0-2-1"><Chart2 /></div>
+                            {/*<div id="frame0-2-2"></div>*/}
                             <div id="frame0-3-0"><h2>Генератор 3</h2></div>
-                            <div id="frame0-3-1"></div>
-                            <div id="frame0-3-2"></div>
+                            <div id="frame0-3-1"><Chart3 /></div>
+                            {/*<div id="frame0-3-2"></div>*/}
                             <div id="frame0-4-0"><h2>Генератор 4</h2></div>
-                            <div id="frame0-4-1"></div>
-                            <div id="frame0-4-2"></div>
+                            <div id="frame0-4-1"><Chart4 /></div>
+                            {/*<div id="frame0-4-2"></div>*/}
                             <div id="frame0-5-0"><h2>Генератор 5</h2></div>
-                            <div id="frame0-5-1"></div>
-                            <div id="frame0-5-2"></div>
+                            <div id="frame0-5-1"><Chart5 /></div>
+                            {/*<div id="frame0-5-2"></div>*/}
                         </div>
                         <div id="frame1">
                             <div id="frame1-1-0"><h2>График 1</h2></div>
@@ -109,8 +113,31 @@ export class GraphicsWin extends React.Component {
 
                             <div id="content0-1">
                                 <div id="frame2">
-                                    <div id="frame2-1"></div>
-                                    <div id="frame2-2"></div>
+                                    <div id="frame2-1"><AdControlLCh /></div>
+                                    <div id="frame2-2">
+                                        <table>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г1:</td>
+                                                <td className={'ost-disp'}>1.75</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г2:</td>
+                                                <td className={'ost-disp'}>1.75</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г3:</td>
+                                                <td className={'ost-disp'}>1.75</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г4:</td>
+                                                <td className={'ost-disp'}>1.75</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г5:</td>
+                                                <td className={'ost-disp'}>1.75</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div id="frame3">
                                     <div className="tabs">
@@ -118,7 +145,7 @@ export class GraphicsWin extends React.Component {
                                                onChange={()=>showVsHide("tab-btn-1", "frame0", "frame1")} value="" />
                                         <label htmlFor="tab-btn-1">Типовые графики</label>
                                         <input type="radio" name="tab-btn" id="tab-btn-2"
-                                               onChange={()=>showVsHide("tab-btn-2", "frame1", "frame0")} value="" />
+                                               onChange={()=>showVsHide("tab-btn-2", "frame1", "frame0")} value="" disabled />
                                         <label htmlFor="tab-btn-2">Уникальные графики</label>
                                         <div id="content-1">
                                             <div id="frame3-1">
@@ -126,31 +153,31 @@ export class GraphicsWin extends React.Component {
                                                 <div className="checkbox-list">
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-1" type="checkbox"
-                                                               onChange={()=>showOrHide("gen11-1", "frame0-1-1", "frame0-1-2", "frame0-1-0")}
+                                                               onChange={()=>showOrHide("gen11-1", "frame0-1-1", "frame0-1-0")}
                                                                name="checkbox" value="1"/>
                                                         <label htmlFor="gen11-1">1</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-2" type="checkbox"
-                                                               onChange={()=>showOrHide("gen11-2", "frame0-2-1", "frame0-2-2", "frame0-2-0")}
+                                                               onChange={()=>showOrHide("gen11-2", "frame0-2-1", "frame0-2-0")}
                                                                name="checkbox" value="2"/>
                                                         <label htmlFor="gen11-2">2</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-3" type="checkbox"
-                                                               onChange={()=>showOrHide("gen11-3", "frame0-3-1", "frame0-3-2", "frame0-3-0")}
+                                                               onChange={()=>showOrHide("gen11-3", "frame0-3-1", "frame0-3-0")}
                                                                name="checkbox" value="3"/>
                                                         <label htmlFor="gen11-3">3</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-4" type="checkbox"
-                                                               onChange={()=>showOrHide("gen11-4", "frame0-4-1", "frame0-4-2", "frame0-4-0")}
+                                                               onChange={()=>showOrHide("gen11-4", "frame0-4-1", "frame0-4-0")}
                                                                name="checkbox" value="4"/>
                                                         <label htmlFor="gen11-4">4</label>
                                                     </div>
                                                     <div className="form_checkbox_btn">
                                                         <input id="gen11-5" type="checkbox"
-                                                               onChange={()=>showOrHide("gen11-5", "frame0-5-1", "frame0-5-2", "frame0-5-0")}
+                                                               onChange={()=>showOrHide("gen11-5", "frame0-5-1", "frame0-5-0")}
                                                                name="checkbox" value="5"/>
                                                         <label htmlFor="gen11-5">5</label>
                                                     </div>
@@ -158,11 +185,12 @@ export class GraphicsWin extends React.Component {
                                             </div>
                                             <div id="frame3-3">
                                                 <div className="container-list">
-                                                    <div className="container-checkboxes-01">
-                                                        <input type="checkbox" id="optional0-all-theme-1"
-                                                               onChange="checkAll(this, '.container-checkboxes-01 ')"/>
-                                                        <label htmlFor="optional0-all-theme-1">Оценка
-                                                            частоты</label>
+                                                    <label className="optional0-all-theme-2">Оценка
+                                                        частоты</label>
+                                                    <div className="container-checkboxes-03">
+                                                        {/*<input type="checkbox" id="optional0-all-theme-1"*/}
+                                                        {/*       onChange="checkAll(this, '.container-checkboxes-01 ')"/>*/}
+
 
                                                         <input type="checkbox" id="option0-1-theme-1"/>
                                                         <label
@@ -175,10 +203,10 @@ export class GraphicsWin extends React.Component {
                                                         <label htmlFor="option0-3-theme-1">Y
                                                             спрогнозированные</label>
                                                     </div>
-                                                    <div className="container-checkboxes-02">
-                                                        <input type="checkbox" id="optional0-all-theme-2"
-                                                               onChange="checkAll(this, '.container-checkboxes-02 ')"/>
-                                                        <label htmlFor="optional0-all-theme-2">Ступеньки</label>
+                                                    <label className="optional0-all-theme-2">Ступеньки</label>
+                                                    <div className="container-checkboxes-03">
+                                                        {/*<input type="checkbox" id="optional0-all-theme-2"*/}
+                                                        {/*       onChange="checkAll(this, '.container-checkboxes-02 ')"/>*/}
                                                         <input type="checkbox" id="option0-1-theme-2"/>
                                                         <label
                                                             htmlFor="option0-1-theme-2">Полученные</label>
@@ -186,11 +214,10 @@ export class GraphicsWin extends React.Component {
                                                         <label
                                                             htmlFor="option0-2-theme-2">Исходные</label>
                                                     </div>
+                                                    <label className="optional0-all-theme-3">Тренды</label>
                                                     <div className="container-checkboxes-03">
-                                                        <input type="checkbox" id="optional0-all-theme-3"
-                                                               onChange="checkAll(this, '.container-checkboxes-03 ')"/>
-                                                        <label htmlFor="optional0-all-theme-3">Тренды</label>
-
+                                                        {/*<input type="checkbox" id="optional0-all-theme-3"*/}
+                                                        {/*       onChange="checkAll(this, '.container-checkboxes-03 ')"/>*/}
                                                         <input type="checkbox" id="option0-1-theme-3"/>
                                                         <label
                                                             htmlFor="option0-1-theme-3">Полученные</label>
@@ -198,11 +225,11 @@ export class GraphicsWin extends React.Component {
                                                         <label
                                                             htmlFor="option0-2-theme-3">Исходные</label>
                                                     </div>
-                                                    <div className="container-checkboxes-04">
-                                                        <input type="checkbox" id="optional0-all-theme-4"
-                                                               onChange="checkAll(this, '.container-checkboxes-04 ')"/>
-                                                        <label htmlFor="optional0-all-theme-4">Ряды
-                                                            измерений</label>
+                                                    <label className="optional0-all-theme-4">Ряды
+                                                        измерений</label>
+                                                    <div className="container-checkboxes-03">
+                                                        {/*<input type="checkbox" id="optional0-all-theme-4"*/}
+                                                        {/*       onChange="checkAll(this, '.container-checkboxes-04 ')"/>*/}
                                                         <input type="checkbox" id="option0-1-theme-4"/>
                                                         <label htmlFor="option0-1-theme-4">До
                                                             фильтрации</label>
@@ -1019,8 +1046,7 @@ export class GraphicsWin extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="tables.html"
-                                   className="closing-button-search"><span>Сравнить результаты экспериментов</span></a>
+                                <a className="closing-button-search" disabled ><span>Сравнить результаты экспериментов</span></a>
                                 <Button className="saveas_btn" onClick={this.openModal3}><span>Сохранить как</span></Button>
                                 <Save_As isOpen3={this.state.isOpen3}
                                             onCancel3={this.handleCancel3}
@@ -1031,7 +1057,25 @@ export class GraphicsWin extends React.Component {
                             <div id="content0-2">
                                 <div id="frame2">
                                     <div id="frame2-1"></div>
-                                    <div id="frame2-2"></div>
+                                    <div id="frame2-2">
+                                        <table>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г1:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г2:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г3:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г4:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г5:</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div id="frame3">
                                     <div className="tabs">
@@ -1039,7 +1083,7 @@ export class GraphicsWin extends React.Component {
                                                onChange='showVsHide("tab-btn-1", "frame0", "frame1")' value="" />
                                         <label htmlFor="tab-btn-1">Типовые графики</label>
                                         <input type="radio" name="tab-btn" id="tab-btn-2"
-                                               onChange='showVsHide("tab-btn-2", "frame1", "frame0")' value="" />
+                                               onChange='showVsHide("tab-btn-2", "frame1", "frame0")' value="" disabled />
                                         <label htmlFor="tab-btn-2">Уникальные графики</label>
                                         <div id="content-1">
                                             <div id="frame3-1">
@@ -1120,9 +1164,9 @@ export class GraphicsWin extends React.Component {
                                                             htmlFor="option0-2-theme-3">Исходные</label>
                                                     </div>
                                                     <div className="container-checkboxes-04">
-                                                        <input type="checkbox" id="optional0-all-theme-4"
+                                                        {/*<input type="checkbox" id="optional0-all-theme-4"*/}
                                                                onChange="checkAll(this, '.container-checkboxes-04 ')"/>
-                                                        <label htmlFor="optional0-all-theme-4">Ряды
+                                                        <label className="optional0-all-theme-4">Ряды
                                                             измерений</label>
                                                         <input type="checkbox" id="option0-1-theme-4"/>
                                                         <label htmlFor="option0-1-theme-4">До
@@ -1940,8 +1984,7 @@ export class GraphicsWin extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="tables.html"
-                                   className="closing-button-search"><span>Сравнить результаты экспериментов</span></a>
+                                <a className="closing-button-search" disabled ><span>Сравнить результаты экспериментов</span></a>
                                 <Button className="saveas_btn" onClick={this.openModal3}><span>Сохранить как</span></Button>
                                 <Save_As isOpen3={this.state.isOpen3}
                                          onCancel3={this.handleCancel3}
@@ -1952,7 +1995,25 @@ export class GraphicsWin extends React.Component {
                             <div id="content0-3">
                                 <div id="frame2">
                                     <div id="frame2-1"></div>
-                                    <div id="frame2-2"></div>
+                                    <div id="frame2-2">
+                                        <table>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г1:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г2:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г3:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г4:</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={'ost-disp'}>Г5:</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div id="frame3">
                                     <div className="tabs">
@@ -1960,7 +2021,7 @@ export class GraphicsWin extends React.Component {
                                                onChange='showVsHide("tab-btn-1", "frame0", "frame1")' value="" />
                                         <label htmlFor="tab-btn-1">Типовые графики</label>
                                         <input type="radio" name="tab-btn" id="tab-btn-2"
-                                               onChange='showVsHide("tab-btn-2", "frame1", "frame0")' value="" />
+                                               onChange='showVsHide("tab-btn-2", "frame1", "frame0")' value="" disabled />
                                         <label htmlFor="tab-btn-2">Уникальные графики</label>
                                         <div id="content-1">
                                             <div id="frame3-1">
@@ -2862,7 +2923,7 @@ export class GraphicsWin extends React.Component {
                                     </div>
                                 </div>
                                 <a href="tables.html"
-                                   className="closing-button-search"><span>Сравнить результаты экспериментов</span></a>
+                                   className="closing-button-search" disabled><span>Сравнить результаты экспериментов</span></a>
                                 <Button className="saveas_btn" onClick={this.openModal3}><span>Сохранить как</span></Button>
                                 <Save_As isOpen3={this.state.isOpen3}
                                          onCancel3={this.handleCancel3}

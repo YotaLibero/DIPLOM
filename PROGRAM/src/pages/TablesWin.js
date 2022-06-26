@@ -15,7 +15,7 @@ export const TablesWin = () => {
                 <tr>
                     <td className="left-win">
                         <div id="frame001">
-                            <DataGrid
+                        <DataGrid
                             id="grid"
                             dataSource={data}
                             // keyExpr="OrderNumber"
@@ -43,7 +43,7 @@ export const TablesWin = () => {
                                 <label htmlFor="tab3-btn-1">Генераторы</label>
                                 <input type="radio" name="tab4-btn"
                                        onChange='showVsHide("tab-btn-2", "frame2", "frame1")'
-                                       id="tab3-btn-2" value=""/>
+                                       id="tab3-btn-2" value="" disabled/>
                                 <label htmlFor="tab3-btn-2">Результаты</label>
                                 <div id="content3-1">
                                     <div id="frame003-3">
@@ -52,6 +52,12 @@ export const TablesWin = () => {
                                             <input className="radio__input" name="male" type="radio"
                                                    id="radio_1"/>
                                             <label className="radio__label" htmlFor="radio_1">Y
+                                                прогноз</label>
+                                        </div>
+                                        <div className="radio">
+                                            <input className="radio__input" name="male" type="radio"
+                                                   id="radio_11"/>
+                                            <label className="radio__label" htmlFor="radio_11">Адаптированный Y
                                                 прогноз</label>
                                         </div>
                                         <div className="radio">
@@ -138,36 +144,32 @@ export const TablesWin = () => {
                                     <div id="frame003-1">
                                         <h3>ГЕНЕРАТОРЫ:</h3>
                                         <div className="checkbox-list">
-                                        <div className="form_checkbox_btn">
-                                                        <input id="gen11-1" type="checkbox"
-                                                               onChange='showOrHide("gen11-1", "frame0-1-1", "frame0-1-2")'
-                                                               name="checkbox" value="1"/>
-                                                        <label htmlFor="gen11-1">1</label>
-                                                    </div>
-                                                    <div className="form_checkbox_btn">
-                                                        <input id="gen11-2" type="checkbox"
-                                                               onChange='showOrHide("gen11-2", "frame0-2-1", "frame0-2-2")'
-                                                               name="checkbox" value="2"/>
-                                                        <label htmlFor="gen11-2">2</label>
-                                                    </div>
-                                                    <div className="form_checkbox_btn">
-                                                        <input id="gen11-3" type="checkbox"
-                                                               onChange='showOrHide("gen11-3", "frame0-3-1", "frame0-3-2")'
-                                                               name="checkbox" value="3"/>
-                                                        <label htmlFor="gen11-3">3</label>
-                                                    </div>
-                                                    <div className="form_checkbox_btn">
-                                                        <input id="gen11-4" type="checkbox"
-                                                               onChange='showOrHide("gen11-4", "frame0-4-1", "frame0-4-2")'
-                                                               name="checkbox" value="4"/>
-                                                        <label htmlFor="gen11-4">4</label>
-                                                    </div>
-                                                    <div className="form_checkbox_btn">
-                                                        <input id="gen11-5" type="checkbox"
-                                                               onChange='showOrHide("gen11-5", "frame0-5-1", "frame0-5-2")'
-                                                               name="checkbox" value="5"/>
-                                                        <label htmlFor="gen11-5">5</label>
-                                                    </div>
+                                            <div className="form_checkbox_btn">
+                                                <input id="gen11-1" type="checkbox"
+                                                       onChange='showOrHide("gen11-1", "frame4")'
+                                                       name="checkbox" value="1" checked/>
+                                                <label htmlFor="gen11-1">1</label>
+                                            </div>
+                                            <div className="form_checkbox_btn">
+                                                <input id="gen11-2" type="checkbox" name="checkbox" value="2"
+                                                       checked/>
+                                                <label htmlFor="gen11-2">2</label>
+                                            </div>
+                                            <div className="form_checkbox_btn">
+                                                <input id="gen11-3" type="checkbox" name="checkbox" value="3"
+                                                       checked/>
+                                                <label htmlFor="gen11-3">3</label>
+                                            </div>
+                                            <div className="form_checkbox_btn">
+                                                <input id="gen11-4" type="checkbox" name="checkbox" value="4"
+                                                       checked/>
+                                                <label htmlFor="gen11-4">4</label>
+                                            </div>
+                                            <div className="form_checkbox_btn">
+                                                <input id="gen11-5" type="checkbox" name="checkbox" value="5"
+                                                       checked/>
+                                                <label htmlFor="gen11-5">5</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

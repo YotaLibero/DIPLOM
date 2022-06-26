@@ -1,9 +1,7 @@
-
 import React, {Fragment, useState} from "react";
 import './create.css';
 import {Link, NavLink} from "react-router-dom";
 // import ReactDOM from "react-dom";
-
 
 import "xlsx";
 import "jquery";
@@ -25,6 +23,8 @@ import CreateLineChart from "../charts/CreateLineCharts";
 import CreateLineChart_1 from "../charts/CreateLineCharts_1";
 import CreateLineChart_2 from "../charts/CreateLineCharts_2";
 import CreateLineChart_3 from "../charts/CreateLineCharts_3";
+
+
 
 const handleFile = async (e) => {
     // const file = e.target.files[0];
@@ -111,8 +111,6 @@ const handleFile = async (e) => {
 }
 
 
-
-
 class CreateWin extends React.Component {
 
     state = {
@@ -125,6 +123,24 @@ class CreateWin extends React.Component {
     openModal = () => {this.setState({ isOpen: true });}
     handleSubmit = () => {
         console.log('Submit function!');
+
+            document.getElementById("frame02").style.display = "block";
+            document.getElementById("frame02").style.height = "275px";
+            document.getElementById("GEN_1").style.display = "block";
+            document.getElementById("GEN_2").style.display = "block";
+            document.getElementById("GEN_3").style.display = "block";
+            document.getElementById("GEN_4").style.display = "block";
+            document.getElementById("GEN_5").style.display = "none";
+
+            document.getElementById("r-frame0").style.display = "block";
+            document.getElementById("r-frame0").style.height = "593px";
+            document.getElementById("r-frame1").style.display = "block";
+            document.getElementById("r-frame2").style.display = "block";
+            document.getElementById("r-frame3").style.display = "block";
+            document.getElementById("r-frame4").style.display = "block";
+            document.getElementById("r-frame5").style.display = "none";
+
+        document.getElementById("frame04").style.display = "block";
         document.getElementById('frame02').style.display = "block";
         document.getElementById('frame03').style.display = "block";
         this.setState({ isOpen: false });
@@ -208,7 +224,7 @@ class CreateWin extends React.Component {
                         <td id="createexp">
                             <div id="frame01">
                                 <div className="fr-1">
-                                    {/* <label htmlFor="excel_file"
+                                     {/* <label htmlFor="excel_file"
                                            id="import_data"><span>Импорт данных</span> */}
                                         {/* <input type="file"
                                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -219,7 +235,7 @@ class CreateWin extends React.Component {
                                             console.log(file);
                                             handleFile(file);
                                         }} /> */}
-                                        <Button id="import_data" onClick={this.importData}><span>Импорт данных</span></Button>
+                                        <Button id="import_data" disabled={true} onClick={this.importData}><span>Импорт данных</span></Button>
                                     {/* </label> */}
                                     <div className="text-field">
                                         <input className="text-field__input" type="text" id="path_file"

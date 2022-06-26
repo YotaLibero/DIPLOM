@@ -385,8 +385,10 @@ input[type="file"] {
 /*#frame02 {display: none;}*/
 
 
-/*#PHI_2, #PHI_3 {display: none;}*/
-/*#Y_AR_2, #Y_AR_3 {display: none;}*/
+#PHI_2, #PHI_3 {display: none;}
+#Y_AR_2, #Y_AR_3 {display: none;}
+#A2, #A3 {display: none;}
+#AY2, #AY3 {display: none;}
 
 /*#PHI2_2, #PHI2_3 {display: none;}*/
 /*#Y_AR2_2, #Y_AR2_3 {display: none;}*/
@@ -401,8 +403,11 @@ input[type="file"] {
 /*#Y_AR5_2, #Y_AR5_3 {display: none;}*/
 
 
-/*#TETA_1, #TETA_2 {display: none;}*/
-/*#Y_MA_1 {display: none;}*/
+#TETA_1, #TETA_2 {display: none;}
+#Y_MA_1 {display: none;}
+
+#T1, #T2 {display: none;}
+#TY1 {display: none;}
 
 /*#TETA2_1, #TETA2_2 {display: none;}*/
 /*#Y_MA2_1 {display: none;}*/
