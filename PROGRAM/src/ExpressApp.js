@@ -89,8 +89,8 @@ ExpressApp.get("/generators", (req, res) => {
 // UPDATE /generators
 ExpressApp.put("/generators", (req, res) => {
   const id = req.body.id;
-  const generator = [req.body.Name, req.body.LvL_AR, req.body.Phi_1, req.body.Phi_2, req.body.Phi_3, req.body.Y_01, req.body.Y_02, req.body.Y_03, req.body.LvL_MA, req.body.Teta_1, req.body.Teta_2, req.body.Y_00, req.body.M, req.body.D, req.body.A, req.body.B, req.body.C, req.body.Y_Stac, req.body.St, req.body.SKO, id];
-  const sql = "UPDATE GENERATOR SET Generator_Name = ?, Generator_LvL_AR = ?, Generator_Phi_1 = ?, Generator_Phi_2 = ?, Generator_Phi_3 = ?, Generator_Y_01 = ?, Generator_Y_02 = ?, Generator_Y_03 = ?, Generator_LvL_MA = ?, Generator_Teta_1 = ?, Generator_Teta_2 = ?, Generator_Y_00 = ?, Generator_M = ?, Generator_D = ?, Generator_A = ?, Generator_B = ?, Generator_C = ?, Generator_Y_Stac = ?, Generator_St = ?, Generator_SKO = ? WHERE (Generator_ID = ?)";
+  const generator = [req.body.Name, req.body.LvL_AR, req.body.Phi_1, req.body.Phi_2, req.body.Phi_3, req.body.Y_01, req.body.Y_02, req.body.Y_03, req.body.LvL_MA, req.body.Teta_1, req.body.Teta_2, req.body.Y_00, req.body.M, req.body.D, req.body.A, req.body.B, req.body.C, req.body.St, req.body.SKO, id];
+  const sql = "UPDATE GENERATOR SET Generator_Name = ?, Generator_LvL_AR = ?, Generator_Phi_1 = ?, Generator_Phi_2 = ?, Generator_Phi_3 = ?, Generator_Y_01 = ?, Generator_Y_02 = ?, Generator_Y_03 = ?, Generator_LvL_MA = ?, Generator_Teta_1 = ?, Generator_Teta_2 = ?, Generator_Y_00 = ?, Generator_M = ?, Generator_D = ?, Generator_A = ?, Generator_B = ?, Generator_C = ?, Generator_St = ?, Generator_SKO = ? WHERE (Generator_ID = ?)";
   db.run(sql, generator, err => {
     if (err) {
       return console.error(err.message);
@@ -101,7 +101,7 @@ ExpressApp.put("/generators", (req, res) => {
 
 // INSERT /generators
 ExpressApp.post("/generators", (req, res) => {
-  const sql = "INSERT INTO GENERATOR (Generator_Name, Generator_LvL_AR, Generator_Phi_1, Generator_Phi_2, Generator_Phi_3, Generator_Y_01, Generator_Y_02, Generator_Y_03, Generator_LvL_MA, Generator_Teta_1, Generator_Teta_2, Generator_Y_00, Generator_M, Generator_D, Generator_A, Generator_B, Generator_C, Generator_Y_Stac, Generator_St, Generator_SKO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const sql = "INSERT INTO GENERATOR (Generator_Name, Generator_LvL_AR, Generator_Phi_1, Generator_Phi_2, Generator_Phi_3, Generator_Y_01, Generator_Y_02, Generator_Y_03, Generator_LvL_MA, Generator_Teta_1, Generator_Teta_2, Generator_Y_00, Generator_M, Generator_D, Generator_A, Generator_B, Generator_C, Generator_St, Generator_SKO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   const generator = [req.body.Name, req.body.LvL_AR, req.body.Phi_1, req.body.Phi_2, req.body.Phi_3, req.body.Y_01, req.body.Y_02, req.body.Y_03, req.body.LvL_MA, req.body.Teta_1, req.body.Teta_2, req.body.Y_00, req.body.M, req.body.D, req.body.A, req.body.B, req.body.C, req.body.Y_Stac, req.body.St, req.body.SKO];
   db.run(sql, generator, err => {
     if (err) {

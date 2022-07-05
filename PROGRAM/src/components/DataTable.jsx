@@ -320,8 +320,6 @@ class DataTable extends React.Component {
             dataForTable[i].date = newdata[i].Experiment_Date
             dataForTable[i].description = newdata[i].Experiment_Description
         }
-        console.log('debug request')
-        console.log(newdata)
         this.setState({data: dataForTable})
     }
 

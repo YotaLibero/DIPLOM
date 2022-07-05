@@ -11,7 +11,7 @@ import Chart1 from "../GRAPHICCHARTS/Chart1/Chart1";
 import Chart2 from "../GRAPHICCHARTS/Chart2/Chart2";
 import Chart3 from "../GRAPHICCHARTS/Chart3/Chart3";
 import Chart4 from "../GRAPHICCHARTS/Chart4/Chart4";
-import Chart5 from "../GRAPHICCHARTS/Chart5/Chart5";
+// import Chart5 from "../GRAPHICCHARTS/Chart5/Chart5";
 
 
 
@@ -75,8 +75,8 @@ export class GraphicsWin extends React.Component {
                             <div id="frame0-4-0"><h2>Генератор 4</h2></div>
                             <div id="frame0-4-1"><Chart4 /></div>
                             {/*<div id="frame0-4-2"></div>*/}
-                            <div id="frame0-5-0"><h2>Генератор 5</h2></div>
-                            <div id="frame0-5-1"><Chart5 /></div>
+                            {/* <div id="frame0-5-0"><h2>Генератор 5</h2></div>
+                            <div id="frame0-5-1"><Chart5 /></div> */}
                             {/*<div id="frame0-5-2"></div>*/}
                         </div>
                         <div id="frame1">
@@ -92,9 +92,9 @@ export class GraphicsWin extends React.Component {
                             <div id="frame1-4-0"><h2>График 4</h2></div>
                             <div id="frame1-4-1"></div>
                             <div id="frame1-4-2"></div>
-                            <div id="frame1-5-0"><h2>График 5</h2></div>
+                            {/* <div id="frame1-5-0"><h2>График 5</h2></div>
                             <div id="frame1-5-1"></div>
-                            <div id="frame1-5-2"></div>
+                            <div id="frame1-5-2"></div> */}
 
                         </div>
                     </td>
@@ -132,10 +132,10 @@ export class GraphicsWin extends React.Component {
                                                 <td className={'ost-disp'}>Г4:</td>
                                                 <td className={'ost-disp'}>1.75</td>
                                             </tr>
-                                            <tr>
+                                            {/* <tr>
                                                 <td className={'ost-disp'}>Г5:</td>
                                                 <td className={'ost-disp'}>1.75</td>
-                                            </tr>
+                                            </tr> */}
                                         </table>
                                     </div>
                                 </div>
@@ -175,12 +175,12 @@ export class GraphicsWin extends React.Component {
                                                                name="checkbox" value="4"/>
                                                         <label htmlFor="gen11-4">4</label>
                                                     </div>
-                                                    <div className="form_checkbox_btn">
+                                                    {/* <div className="form_checkbox_btn">
                                                         <input id="gen11-5" type="checkbox"
                                                                onChange={()=>showOrHide("gen11-5", "frame0-5-1", "frame0-5-0")}
                                                                name="checkbox" value="5"/>
                                                         <label htmlFor="gen11-5">5</label>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
                                             <div id="frame3-3">
@@ -1164,7 +1164,7 @@ export class GraphicsWin extends React.Component {
                                                             htmlFor="option0-2-theme-3">Исходные</label>
                                                     </div>
                                                     <div className="container-checkboxes-04">
-                                                        {/*<input type="checkbox" id="optional0-all-theme-4"*/}
+                                                        <input type="checkbox" id="optional0-all-theme-4"
                                                                onChange="checkAll(this, '.container-checkboxes-04 ')"/>
                                                         <label className="optional0-all-theme-4">Ряды
                                                             измерений</label>

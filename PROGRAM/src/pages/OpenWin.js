@@ -1,6 +1,5 @@
 import React, {Fragment} from "react";
 import './open.css';
-// import axios from 'axios';
 import CreateWin from "./CreateWin";
 import DataTable from "../components/DataTable";
 

@@ -1,6 +1,7 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState} from 'react';
 import './create.css';
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
 // import ReactDOM from "react-dom";
 
 import "xlsx";
@@ -15,10 +16,10 @@ import Generation from "../modalswin/generation";
 // import readXlsxFile from "read-excel-file";
 // import LineChart from "../charts/LineChart";
 // import {getValue} from "@testing-library/user-event/dist/utils";
-import Chart from "../charts/Chart";
+// import Chart from "../charts/Chart";
 // import { Chart } from "../charts/Chart";
 
-import { LineChart, Line } from 'recharts';
+// import { LineChart, Line } from 'recharts';
 import CreateLineChart from "../charts/CreateLineCharts";
 import CreateLineChart_1 from "../charts/CreateLineCharts_1";
 import CreateLineChart_2 from "../charts/CreateLineCharts_2";
@@ -26,92 +27,128 @@ import CreateLineChart_3 from "../charts/CreateLineCharts_3";
 
 
 
-const handleFile = async (e) => {
-    // const file = e.target.files[0];
-    document.getElementById('path_file').value = document.getElementById('excel_file').value;
-    const DaTa = await e.arrayBuffer();
-    const workbook = XLSX.read(DaTa);
+// const handleFile = async (e) => {
+//     // const file = e.target.files[0];
+//     document.getElementById('path_file').value = document.getElementById('excel_file').value;
+//     const DaTa = await e.arrayBuffer();
+//     const workbook = XLSX.read(DaTa);
 
 
-    const sheet_name = workbook.SheetNames;
-    const sheet_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name[0]], {header:1});
-    console.log(sheet_data);
+//     const sheet_name = workbook.SheetNames;
+//     const sheet_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name[0]], {header:1});
+//     console.log(sheet_data);
 
-    const json = XLSX.utils.sheet_to_json(sheet_data);
-    console.log(json);
+//     const json = XLSX.utils.sheet_to_json(sheet_data);
+//     console.log(json);
 
-    let i = 0;
-    let headers = [];
-    let json_object = [];
-    sheet_data.map((row, index) => {
-        if (i === 0) {
-            headers = row;
-        }
-        if (i > 0) {
-            const temp = {};
-            for (let x = 0; x < row.length; x++) {
-                temp[headers[x]] = row[x];
-            }
-            json_object.push(temp);
-        }
-        i++;
-    });
-    const json_array = JSON.stringify(json_object, null, 2);
-    console.log(json_array);
+//     let i = 0;
+//     let headers = [];
+//     let json_object = [];
+//     sheet_data.map((row, index) => {
+//         if (i === 0) {
+//             headers = row;
+//         }
+//         if (i > 0) {
+//             const temp = {};
+//             for (let x = 0; x < row.length; x++) {
+//                 temp[headers[x]] = row[x];
+//             }
+//             json_object.push(temp);
+//         }
+//         i++;
+//     });
+//     const json_array = JSON.stringify(json_object, null, 2);
+//     console.log(json_array);
 
-    let count = 0;
-    if(sheet_data.length > 0) {
-        for(let row = 0; row < sheet_data.length; row++) {
-            for(let cell = 0; cell < sheet_data[row].length; cell++) {
-                count += 1;
-            }
-        }
-        let columns_table = count / sheet_data.length;
-        console.log(columns_table.toString());
+//     let count = 0;
+//     if(sheet_data.length > 0) {
+//         for(let row = 0; row < sheet_data.length; row++) {
+//             for(let cell = 0; cell < sheet_data[row].length; cell++) {
+//                 count += 1;
+//             }
+//         }
+//         let columns_table = count / sheet_data.length;
+//         console.log(columns_table.toString());
 
-        // document.getElementById("frame02").style.display = "block";
+//         // document.getElementById("frame02").style.display = "block";
 
-        if (columns_table === 4) {
-            document.getElementById("frame02").style.display = "block";
-            document.getElementById("frame02").style.height = "275px";
-            document.getElementById("GEN_1").style.display = "block";
-            document.getElementById("GEN_2").style.display = "block";
-            document.getElementById("GEN_3").style.display = "block";
-            document.getElementById("GEN_4").style.display = "block";
-            document.getElementById("GEN_5").style.display = "none";
+//         if (columns_table === 4) {
+//             document.getElementById("frame02").style.display = "block";
+//             document.getElementById("frame02").style.height = "275px";
+//             document.getElementById("GEN_1").style.display = "block";
+//             document.getElementById("GEN_2").style.display = "block";
+//             document.getElementById("GEN_3").style.display = "block";
+//             document.getElementById("GEN_4").style.display = "block";
+//             document.getElementById("GEN_5").style.display = "none";
 
-            document.getElementById("r-frame0").style.display = "block";
-            document.getElementById("r-frame0").style.height = "593px";
-            document.getElementById("r-frame1").style.display = "block";
-            document.getElementById("r-frame2").style.display = "block";
-            document.getElementById("r-frame3").style.display = "block";
-            document.getElementById("r-frame4").style.display = "block";
-            document.getElementById("r-frame5").style.display = "none";
-        }
-        if (columns_table === 5) {
-            document.getElementById("frame02").style.display = "block";
-            document.getElementById("frame02").style.height = "340px";
-            document.getElementById("GEN_1").style.display = "block";
-            document.getElementById("GEN_2").style.display = "block";
-            document.getElementById("GEN_3").style.display = "block";
-            document.getElementById("GEN_4").style.display = "block";
-            document.getElementById("GEN_5").style.display = "block";
+//             document.getElementById("r-frame0").style.display = "block";
+//             document.getElementById("r-frame0").style.height = "593px";
+//             document.getElementById("r-frame1").style.display = "block";
+//             document.getElementById("r-frame2").style.display = "block";
+//             document.getElementById("r-frame3").style.display = "block";
+//             document.getElementById("r-frame4").style.display = "block";
+//             document.getElementById("r-frame5").style.display = "none";
+//         }
+//         if (columns_table === 5) {
+//             document.getElementById("frame02").style.display = "block";
+//             document.getElementById("frame02").style.height = "340px";
+//             document.getElementById("GEN_1").style.display = "block";
+//             document.getElementById("GEN_2").style.display = "block";
+//             document.getElementById("GEN_3").style.display = "block";
+//             document.getElementById("GEN_4").style.display = "block";
+//             document.getElementById("GEN_5").style.display = "block";
 
-            document.getElementById("r-frame0").style.display = "block";
-            document.getElementById("r-frame0").style.height = "740px";
-            document.getElementById("r-frame1").style.display = "block";
-            document.getElementById("r-frame2").style.display = "block";
-            document.getElementById("r-frame3").style.display = "block";
-            document.getElementById("r-frame4").style.display = "block";
-            document.getElementById("r-frame5").style.display = "block";
-        }
-        document.getElementById("frame03").style.display = "block";
-        document.getElementById("frame04").style.display = "block";
+//             document.getElementById("r-frame0").style.display = "block";
+//             document.getElementById("r-frame0").style.height = "740px";
+//             document.getElementById("r-frame1").style.display = "block";
+//             document.getElementById("r-frame2").style.display = "block";
+//             document.getElementById("r-frame3").style.display = "block";
+//             document.getElementById("r-frame4").style.display = "block";
+//             document.getElementById("r-frame5").style.display = "block";
+//         }
+//         document.getElementById("frame03").style.display = "block";
+//         document.getElementById("frame04").style.display = "block";
+//     }
+// }
+
+const importData = (e) => {
+    e.preventDefault(); // Чтобы не происходила перезагрузка страницы
+
+    const remote = window.require("@electron/remote");
+    const { getCurrentWebContents, getCurrentWindow, dialog } = remote;
+
+    const webContents = getCurrentWebContents();
+    const currentWindow = getCurrentWindow();
+
+    const file = dialog.showOpenDialogSync(currentWindow, { properties: ['openFile', 'createDirectory'] })
+    document.getElementById('path_file').value = file
+}
+
+const importDatFiles = (e) => {
+    e.preventDefault(); // Чтобы не происходила перезагрузка страницы
+
+    const remote = window.require("@electron/remote");
+    const { getCurrentWebContents, getCurrentWindow, dialog } = remote;
+
+    const webContents = getCurrentWebContents();
+    const currentWindow = getCurrentWindow();
+
+    const files = dialog.showOpenDialogSync(currentWindow, { 
+        filters: [
+            { name: 'Dat Files', extensions: ['dat'] },
+            { name: 'All Files', extensions: ['*'] } ], 
+        properties: ['openFile', 'createDirectory', 'multiSelections']})
+    if(files.length > 1) {
+        document.getElementById('path_file_dat').value = files[0] + ' – ' + files[files.length - 1]
+    }
+    else {
+        document.getElementById('path_file_dat').value = files[0]
     }
 }
 
 
 class CreateWin extends React.Component {
+
 
     state = {
         isOpen: false,
@@ -183,37 +220,6 @@ class CreateWin extends React.Component {
     handleCancel4 = () => {
         console.log('Cancel function!');
         this.setState({ isOpen4: false });
-    }
-
-    importData = () => {
-        const remote = window.require("@electron/remote");
-        const { getCurrentWebContents, getCurrentWindow, dialog } = remote;
-
-        const webContents = getCurrentWebContents();
-        const currentWindow = getCurrentWindow();
-
-        const file = dialog.showOpenDialogSync(currentWindow, { properties: ['openFile', 'createDirectory'] })
-        document.getElementById('path_file').value = file
-    }
-
-    importDatFiles = () => {
-        const remote = window.require("@electron/remote");
-        const { getCurrentWebContents, getCurrentWindow, dialog } = remote;
-
-        const webContents = getCurrentWebContents();
-        const currentWindow = getCurrentWindow();
-
-        const file = dialog.showOpenDialogSync(currentWindow, { 
-            filters: [
-                { name: 'Dat Files', extensions: ['dat'] },
-                { name: 'All Files', extensions: ['*'] } ], 
-            properties: ['openFile', 'createDirectory', 'multiSelections']})
-        if(file.length > 1) {
-            document.getElementById('path_file_dat').value = file[0] + ' – ' + file[file.length - 1]
-        }
-        else {
-            document.getElementById('path_file_dat').value = file[0]
-        }
     }
 
     render() {
@@ -450,5 +456,19 @@ class CreateWin extends React.Component {
     }
 }
 
-export default CreateWin;
+const mapStateToProps = (state) => {
+    return {
+        filenameOfTables: 'Путь к файлу',
+        filenameOfDat: 'Путь к файлу',
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        importData: (e) => dispatch(importData(e)),
+        importDatFiles: (e) => dispatch(importDatFiles(e))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateWin);
 
