@@ -1,19 +1,17 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 import './create.css';
 import {Link, NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
 // import ReactDOM from "react-dom";
 
-import "xlsx";
 import "jquery";
-import * as XLSX from "xlsx";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Parser from "../modalswin/parser";
 import Add_Gen from "../modalswin/add_gen";
 import Choice_Gen from "../modalswin/choice_gen";
 import Generation from "../modalswin/generation";
-// import readXlsxFile from "read-excel-file";
 // import LineChart from "../charts/LineChart";
 // import {getValue} from "@testing-library/user-event/dist/utils";
 // import Chart from "../charts/Chart";
@@ -25,91 +23,7 @@ import CreateLineChart_1 from "../charts/CreateLineCharts_1";
 import CreateLineChart_2 from "../charts/CreateLineCharts_2";
 import CreateLineChart_3 from "../charts/CreateLineCharts_3";
 
-
-
-// const handleFile = async (e) => {
-//     // const file = e.target.files[0];
-//     document.getElementById('path_file').value = document.getElementById('excel_file').value;
-//     const DaTa = await e.arrayBuffer();
-//     const workbook = XLSX.read(DaTa);
-
-
-//     const sheet_name = workbook.SheetNames;
-//     const sheet_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name[0]], {header:1});
-//     console.log(sheet_data);
-
-//     const json = XLSX.utils.sheet_to_json(sheet_data);
-//     console.log(json);
-
-//     let i = 0;
-//     let headers = [];
-//     let json_object = [];
-//     sheet_data.map((row, index) => {
-//         if (i === 0) {
-//             headers = row;
-//         }
-//         if (i > 0) {
-//             const temp = {};
-//             for (let x = 0; x < row.length; x++) {
-//                 temp[headers[x]] = row[x];
-//             }
-//             json_object.push(temp);
-//         }
-//         i++;
-//     });
-//     const json_array = JSON.stringify(json_object, null, 2);
-//     console.log(json_array);
-
-//     let count = 0;
-//     if(sheet_data.length > 0) {
-//         for(let row = 0; row < sheet_data.length; row++) {
-//             for(let cell = 0; cell < sheet_data[row].length; cell++) {
-//                 count += 1;
-//             }
-//         }
-//         let columns_table = count / sheet_data.length;
-//         console.log(columns_table.toString());
-
-//         // document.getElementById("frame02").style.display = "block";
-
-//         if (columns_table === 4) {
-//             document.getElementById("frame02").style.display = "block";
-//             document.getElementById("frame02").style.height = "275px";
-//             document.getElementById("GEN_1").style.display = "block";
-//             document.getElementById("GEN_2").style.display = "block";
-//             document.getElementById("GEN_3").style.display = "block";
-//             document.getElementById("GEN_4").style.display = "block";
-//             document.getElementById("GEN_5").style.display = "none";
-
-//             document.getElementById("r-frame0").style.display = "block";
-//             document.getElementById("r-frame0").style.height = "593px";
-//             document.getElementById("r-frame1").style.display = "block";
-//             document.getElementById("r-frame2").style.display = "block";
-//             document.getElementById("r-frame3").style.display = "block";
-//             document.getElementById("r-frame4").style.display = "block";
-//             document.getElementById("r-frame5").style.display = "none";
-//         }
-//         if (columns_table === 5) {
-//             document.getElementById("frame02").style.display = "block";
-//             document.getElementById("frame02").style.height = "340px";
-//             document.getElementById("GEN_1").style.display = "block";
-//             document.getElementById("GEN_2").style.display = "block";
-//             document.getElementById("GEN_3").style.display = "block";
-//             document.getElementById("GEN_4").style.display = "block";
-//             document.getElementById("GEN_5").style.display = "block";
-
-//             document.getElementById("r-frame0").style.display = "block";
-//             document.getElementById("r-frame0").style.height = "740px";
-//             document.getElementById("r-frame1").style.display = "block";
-//             document.getElementById("r-frame2").style.display = "block";
-//             document.getElementById("r-frame3").style.display = "block";
-//             document.getElementById("r-frame4").style.display = "block";
-//             document.getElementById("r-frame5").style.display = "block";
-//         }
-//         document.getElementById("frame03").style.display = "block";
-//         document.getElementById("frame04").style.display = "block";
-//     }
-// }
+import {changeFilenameOfTables, changeFilenameOfDat, changeDataForGraphs} from '../reducers/CreateExperimentReducer.js';
 
 const importData = (e) => {
     e.preventDefault(); // Чтобы не происходила перезагрузка страницы
@@ -121,7 +35,85 @@ const importData = (e) => {
     const currentWindow = getCurrentWindow();
 
     const file = dialog.showOpenDialogSync(currentWindow, { properties: ['openFile', 'createDirectory'] })
-    document.getElementById('path_file').value = file
+
+    if (file !== undefined) {
+        
+    }
+    
+
+    
+
+    return (dispatch, getState) => {
+        
+        if (file === undefined) {
+            dispatch(changeFilenameOfTables('Путь к файлу'));
+        }
+        else {
+            dispatch(changeFilenameOfTables(file));
+            axios.post('http://localhost:8000/excelfile', {
+            filename: file[0]
+        }).then(res => {
+            let columns_table = res.data.columns_table;
+            let sheet_data = res.data.sheet_data;
+            console.log('sheet_data')
+            console.log(sheet_data[1])
+            let data = []
+            // for (let i = 0; i < sheet_data.length; ++i) {
+            //     data[i] = {}
+            //     data[i].name = i
+            //     data[i].Y_1 = parseFloat(sheet_data[i+1][0])
+            //     data[i].Y_2 = parseFloat(sheet_data[i+1][1])
+            //     data[i].Y_3 = parseFloat(sheet_data[i+1][2])
+            //     data[i].Y_4 = parseFloat(sheet_data[i+1][3])
+            // }
+
+
+            console.log('Debug request')
+            console.log(res)
+            console.log(data)
+
+        if (columns_table === 4) {
+            document.getElementById("frame02").style.display = "block";
+            document.getElementById("frame02").style.height = "275px";
+            document.getElementById("GEN_1").style.display = "block";
+            document.getElementById("GEN_2").style.display = "block";
+            document.getElementById("GEN_3").style.display = "block";
+            document.getElementById("GEN_4").style.display = "block";
+            document.getElementById("GEN_5").style.display = "none";
+
+            document.getElementById("r-frame0").style.display = "block";
+            document.getElementById("r-frame0").style.height = "593px";
+            document.getElementById("r-frame1").style.display = "block";
+            document.getElementById("r-frame2").style.display = "block";
+            document.getElementById("r-frame3").style.display = "block";
+            document.getElementById("r-frame4").style.display = "block";
+            document.getElementById("r-frame5").style.display = "none";
+        }
+        if (columns_table === 5) {
+            document.getElementById("frame02").style.display = "block";
+            document.getElementById("frame02").style.height = "340px";
+            document.getElementById("GEN_1").style.display = "block";
+            document.getElementById("GEN_2").style.display = "block";
+            document.getElementById("GEN_3").style.display = "block";
+            document.getElementById("GEN_4").style.display = "block";
+            document.getElementById("GEN_5").style.display = "block";
+
+            document.getElementById("r-frame0").style.display = "block";
+            document.getElementById("r-frame0").style.height = "740px";
+            document.getElementById("r-frame1").style.display = "block";
+            document.getElementById("r-frame2").style.display = "block";
+            document.getElementById("r-frame3").style.display = "block";
+            document.getElementById("r-frame4").style.display = "block";
+            document.getElementById("r-frame5").style.display = "block";
+        }
+        document.getElementById("frame03").style.display = "block";
+        document.getElementById("frame04").style.display = "block";
+
+
+    dispatch(changeDataForGraphs(data))
+    })
+        }
+    }
 }
 
 const importDatFiles = (e) => {
@@ -138,17 +130,25 @@ const importDatFiles = (e) => {
             { name: 'Dat Files', extensions: ['dat'] },
             { name: 'All Files', extensions: ['*'] } ], 
         properties: ['openFile', 'createDirectory', 'multiSelections']})
-    if(files.length > 1) {
-        document.getElementById('path_file_dat').value = files[0] + ' – ' + files[files.length - 1]
-    }
-    else {
-        document.getElementById('path_file_dat').value = files[0]
+    
+    return (dispatch, getState) => {
+        if (files === undefined) {
+            dispatch(changeFilenameOfDat('Путь к файлу'));
+        }
+        else {
+            if(files.length > 1) {
+                dispatch(changeFilenameOfDat(files[0] + ' – ' + files[files.length - 1]));
+            }
+            else {
+                dispatch(changeFilenameOfDat(files[0]));
+            }
+            
+        }
     }
 }
 
 
 class CreateWin extends React.Component {
-
 
     state = {
         isOpen: false,
@@ -241,11 +241,11 @@ class CreateWin extends React.Component {
                                             console.log(file);
                                             handleFile(file);
                                         }} /> */}
-                                        <Button id="import_data" disabled={true} onClick={this.importData}><span>Импорт данных</span></Button>
+                                        <Button id="import_data" onClick={this.props.importData}><span>Импорт данных</span></Button>
                                     {/* </label> */}
                                     <div className="text-field">
                                         <input className="text-field__input" type="text" id="path_file"
-                                               value="Путь к файлу"
+                                               value={this.props.filenameOfTables}
                                                readOnly/>
                                     </div>
                                 </div>
@@ -269,12 +269,12 @@ class CreateWin extends React.Component {
                                                             console.log(inputFile[1].name.toString());
                                                         }}/>
                                                     </label> */}
-                                                    <Button id="dat_file" className="closing-button-21" onClick={this.importDatFiles}><span>Импорт данных</span></Button>
+                                                    <Button id="dat_file" className="closing-button-21" onClick={this.props.importDatFiles}><span>Импорт данных</span></Button>
                                                 </ul>
                                                 <div className="text-field">
                                                     <input className="text-field__input" type="text"
                                                            name="login" id={'path_file_dat'}
-                                                           placeholder="Login" value="Путь к файлу" readOnly/>
+                                                           placeholder="Login" value={this.props.filenameOfDat} readOnly/>
                                                 </div>
                                                 <div className="text-radios-list">
                                                     <h3>Выбрать интервал:</h3>
@@ -458,8 +458,8 @@ class CreateWin extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        filenameOfTables: 'Путь к файлу',
-        filenameOfDat: 'Путь к файлу',
+        filenameOfTables: state.createExperiment.filenameOfTables,
+        filenameOfDat: state.createExperiment.filenameOfDat
     }
 }
 

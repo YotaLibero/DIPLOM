@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 const sqlite = require('sqlite3').verbose();
+const XLSX = require('xlsx')
 
 // Express Application
 var ExpressApp = express();
@@ -171,6 +172,55 @@ ExpressApp.delete("/parameters", (req, res) => {
     }
     res.send("1")
   });
+});
+
+// ----------------------------------------------------------------------------------------------------------
+// Read excel file from filesystem
+// POST /excelfile
+ExpressApp.post("/excelfile", (req, res) => {
+
+  let workbook = XLSX.readFile(req.body.filename);
+
+  const sheet_name = workbook.SheetNames;
+  const sheet_data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name[0]], {header:1});
+
+  const json = XLSX.utils.sheet_to_json(sheet_data);
+
+  let i = 0;
+  let headers = [];
+  let json_object = [];
+  sheet_data.map((row, index) => {
+    if (i === 0) {
+      headers = row;
+    }
+    if (i > 0) {
+      const temp = {};
+      for (let x = 0; x < row.length; x++) {
+        temp[headers[x]] = row[x];
+      }
+      json_object.push(temp);
+    }
+    i++;
+  });
+  const json_array = JSON.stringify(json_object, null, 2);
+
+  let count = 0;
+  let columns_table = 0
+  if(sheet_data.length > 0) {
+    for(let row = 0; row < sheet_data.length; row++) {
+      count += sheet_data[row].length;
+    }
+    columns_table = Math.floor(count / sheet_data.length);
+  }
+
+
+  res.send({
+    columns_table: columns_table,
+    count: count,
+    workbook: workbook,
+    sheet_name: sheet_name,
+    sheet_data: sheet_data
+  })
 });
 
 // ----------------------------------------------------------------------------------------------------------

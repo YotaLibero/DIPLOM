@@ -25,6 +25,9 @@ const ACTION_CHANGE_Y_STAC = 'ACTION_CHANGE_Y_STAC';
 const ACTION_CHANGE_ST = 'ACTION_CHANGE_ST';
 const ACTION_CHANGE_SKO = 'ACTION_CHANGE_SKO';
 
+const ACTION_CHANGE_FILENAME_OF_TABLES = 'ACTION_CHANGE_FILENAME_OF_TABLES';
+const ACTION_CHANGE_FILENAME_OF_DAT = 'ACTION_CHANGE_FILENAME_OF_DAT';
+const ACTION_CHANGE_DATA_FOR_GRAPHS = 'ACTION_CHANGE_DATA_FOR_GRAPHS';
 
 const initialState = {
 	name: null,
@@ -52,7 +55,11 @@ const initialState = {
 
 	generator_y_stac: null,
 	generator_st: null,
-	generator_sko: null
+	generator_sko: null,
+
+	filenameOfTables: 'Путь к файлу',
+    filenameOfDat: 'Путь к файлу',
+	dataForGraphs: []
 }
 
 export const changeName = (newName) => {
@@ -118,6 +125,27 @@ export const changeLvlMA = (newLvlMA) => {
 	}
 }
 
+export const changeFilenameOfTables = (newfilename) => {
+	return {
+		type: ACTION_CHANGE_FILENAME_OF_TABLES,
+		data: newfilename
+	}
+}
+
+export const changeFilenameOfDat = (newfilename) => {
+	return {
+		type: ACTION_CHANGE_FILENAME_OF_DAT,
+		data: newfilename
+	}
+}
+
+export const changeDataForGraphs = (newdata) => {
+	return {
+		type: ACTION_CHANGE_DATA_FOR_GRAPHS,
+		data: newdata
+	}
+}
+
 function AuthorizationReducer(state = initialState, action) {
 	switch(action.type) {
 		case ACTION_CHANGE_NAME:
@@ -126,7 +154,12 @@ function AuthorizationReducer(state = initialState, action) {
 			return Object.assign({}, state, {lvl_ar: action.data});
 		case ACTION_CHANGE_PHI_1:
 			return Object.assign({}, state, {phi_1: action.data});
-		
+		case ACTION_CHANGE_FILENAME_OF_TABLES:
+			return Object.assign({}, state, {filenameOfTables: action.data});
+		case ACTION_CHANGE_FILENAME_OF_DAT:
+			return Object.assign({}, state, {filenameOfDat: action.data});
+		case ACTION_CHANGE_DATA_FOR_GRAPHS:
+			return Object.assign({}, state, {dataForGraphs: action.data})
 		default: 
 			return state;
 	}
