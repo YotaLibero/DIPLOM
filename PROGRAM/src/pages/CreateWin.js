@@ -29,18 +29,12 @@ const importData = (e) => {
     e.preventDefault(); // Чтобы не происходила перезагрузка страницы
 
     const remote = window.require("@electron/remote");
-    const { getCurrentWebContents, getCurrentWindow, dialog } = remote;
+    const { getCurrentWebContents, getCurrentWindow, dialog, showMessageBox } = remote;
 
     const webContents = getCurrentWebContents();
     const currentWindow = getCurrentWindow();
 
     const file = dialog.showOpenDialogSync(currentWindow, { properties: ['openFile', 'createDirectory'] })
-
-    if (file !== undefined) {
-        
-    }
-    
-
     
 
     return (dispatch, getState) => {
@@ -55,63 +49,54 @@ const importData = (e) => {
         }).then(res => {
             let columns_table = res.data.columns_table;
             let sheet_data = res.data.sheet_data;
-            console.log('sheet_data')
-            console.log(sheet_data[1])
             let data = []
-            // for (let i = 0; i < sheet_data.length; ++i) {
-            //     data[i] = {}
-            //     data[i].name = i
-            //     data[i].Y_1 = parseFloat(sheet_data[i+1][0])
-            //     data[i].Y_2 = parseFloat(sheet_data[i+1][1])
-            //     data[i].Y_3 = parseFloat(sheet_data[i+1][2])
-            //     data[i].Y_4 = parseFloat(sheet_data[i+1][3])
-            // }
+            for (let i = 0; i < sheet_data.length - 1; ++i) {
+                data[i] = {}
+                data[i].name = i
+                data[i].Y_1 = parseFloat(sheet_data[i+1][0])
+                data[i].Y_2 = parseFloat(sheet_data[i+1][1])
+                data[i].Y_3 = parseFloat(sheet_data[i+1][2])
+                data[i].Y_4 = parseFloat(sheet_data[i+1][3])
+            }
+            if (columns_table === 4) {
+                document.getElementById("frame02").style.display = "block";
+                document.getElementById("frame02").style.height = "275px";
+                document.getElementById("GEN_1").style.display = "block";
+                document.getElementById("GEN_2").style.display = "block";
+                document.getElementById("GEN_3").style.display = "block";
+                document.getElementById("GEN_4").style.display = "block";
+                document.getElementById("GEN_5").style.display = "none";
 
+                document.getElementById("r-frame0").style.display = "block";
+                document.getElementById("r-frame0").style.height = "593px";
+                document.getElementById("r-frame1").style.display = "block";
+                document.getElementById("r-frame2").style.display = "block";
+                document.getElementById("r-frame3").style.display = "block";
+                document.getElementById("r-frame4").style.display = "block";
+                document.getElementById("r-frame5").style.display = "none";
+            }
+            if (columns_table === 5) {
+                document.getElementById("frame02").style.display = "block";
+                document.getElementById("frame02").style.height = "340px";
+                document.getElementById("GEN_1").style.display = "block";
+                document.getElementById("GEN_2").style.display = "block";
+                document.getElementById("GEN_3").style.display = "block";
+                document.getElementById("GEN_4").style.display = "block";
+                document.getElementById("GEN_5").style.display = "block";
 
-            console.log('Debug request')
-            console.log(res)
-            console.log(data)
-
-        if (columns_table === 4) {
-            document.getElementById("frame02").style.display = "block";
-            document.getElementById("frame02").style.height = "275px";
-            document.getElementById("GEN_1").style.display = "block";
-            document.getElementById("GEN_2").style.display = "block";
-            document.getElementById("GEN_3").style.display = "block";
-            document.getElementById("GEN_4").style.display = "block";
-            document.getElementById("GEN_5").style.display = "none";
-
-            document.getElementById("r-frame0").style.display = "block";
-            document.getElementById("r-frame0").style.height = "593px";
-            document.getElementById("r-frame1").style.display = "block";
-            document.getElementById("r-frame2").style.display = "block";
-            document.getElementById("r-frame3").style.display = "block";
-            document.getElementById("r-frame4").style.display = "block";
-            document.getElementById("r-frame5").style.display = "none";
-        }
-        if (columns_table === 5) {
-            document.getElementById("frame02").style.display = "block";
-            document.getElementById("frame02").style.height = "340px";
-            document.getElementById("GEN_1").style.display = "block";
-            document.getElementById("GEN_2").style.display = "block";
-            document.getElementById("GEN_3").style.display = "block";
-            document.getElementById("GEN_4").style.display = "block";
-            document.getElementById("GEN_5").style.display = "block";
-
-            document.getElementById("r-frame0").style.display = "block";
-            document.getElementById("r-frame0").style.height = "740px";
-            document.getElementById("r-frame1").style.display = "block";
-            document.getElementById("r-frame2").style.display = "block";
-            document.getElementById("r-frame3").style.display = "block";
-            document.getElementById("r-frame4").style.display = "block";
-            document.getElementById("r-frame5").style.display = "block";
-        }
-        document.getElementById("frame03").style.display = "block";
-        document.getElementById("frame04").style.display = "block";
-
-
-    dispatch(changeDataForGraphs(data))
-    })
+                document.getElementById("r-frame0").style.display = "block";
+                document.getElementById("r-frame0").style.height = "740px";
+                document.getElementById("r-frame1").style.display = "block";
+                document.getElementById("r-frame2").style.display = "block";
+                document.getElementById("r-frame3").style.display = "block";
+                document.getElementById("r-frame4").style.display = "block";
+                document.getElementById("r-frame5").style.display = "block";
+            }
+            document.getElementById("frame03").style.display = "block";
+            document.getElementById("frame04").style.display = "block";
+            
+            dispatch(changeDataForGraphs(data))
+        })
         }
     }
 }
