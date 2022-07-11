@@ -6,258 +6,43 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import Button from "./Button";
 import _Delete_btn from "../modalswin/_Delete";
 import filterFactory, {textFilter} from 'react-bootstrap-table2-filter';
+import {connect} from 'react-redux';
 
 import axios from 'axios';
 import { data } from "jquery";
+import { changeListOfExperiments } from "../reducers/OpenExperimentReducer";
 
-// const products = [
-//     {
-//         id: 1,
-//         name: "Marrilee",
-//         description: "Le Clercq",
-//         date: "2022-04-22"
-//     },
-//     {
-//         id: 2,
-//         name: "Nancey",
-//         description: "quia molestiae reprehenderit quasi aspernatur\\naut expedita occaecati aliquam eveniet laudantium\\nomnis quibusdam delectus saepe quia accusamus maiores nam est\\ncum et ducimus et vero voluptates excepturi deleniti ratione",
-//         date: "2022-04-21"
-//     },
-//     {
-//         id: 3,
-//         name: "Malanie",
-//         description: "Decroix",
-//         date: "2022-04-23"
-//     },
-//     {
-//         id: 4,
-//         name: "Darcee",
-//         description: "Milverton",
-//         date: "2022-04-24"
-//     },
-//     {
-//         id: 5,
-//         name: "Robbie",
-//         description: "quia molestiae reprehenderit quasi aspernatur\\naut expedita occaecati aliquam eveniet laudantium\\nomnis quibusdam delectus saepe quia accusamus maiores nam est\\ncum et ducimus et vero voluptates excepturi deleniti ratione",
-//         date: "2022-04-24"
-//     },
-//     {
-//         id: 6,
-//         name: "Courtney",
-//         description: "Gaynor",
-//         date: "2022-04-24"
-//     },
-//     {
-//         id: 7,
-//         name: "Dorelia",
-//         description: "quia molestiae reprehenderit quasi aspernatur\\naut expedita occaecati aliquam eveniet laudantium\\nomnis quibusdam delectus saepe quia accusamus maiores nam est\\ncum et ducimus et vero voluptates excepturi deleniti ratione",
-//         date: "2022-04-21"
-//     },
-//     {
-//         id: 8,
-//         name: "Wylma",
-//         description: "Lidgerton",
-//         date: "2022-04-27"
-//     },
-//     {
-//         id: 9,
-//         name: "Lind",
-//         description: "quia molestiae reprehenderit quasi aspernatur\\naut expedita occaecati aliquam eveniet laudantium\\nomnis quibusdam delectus saepe quia accusamus maiores nam est\\ncum et ducimus et vero voluptates excepturi deleniti ratione",
-//         date: "2022-04-27"
-//     },
-//     {
-//         id: 10,
-//         name: "Palm",
-//         description: "quia molestiae reprehenderit quasi aspernatur\\naut expedita occaecati aliquam eveniet laudantium\\nomnis quibusdam delectus saepe quia accusamus maiores nam est\\ncum et ducimus et vero voluptates excepturi deleniti ratione",
-//         date: "2022-04-27"
-//     },
-//     {
-//         id: 11,
-//         name: "Beale",
-//         description: "Brittles",
-//         date: "2022-04-27"
-//     },
-//     {
-//         id: 12,
-//         name: "Holt",
-//         description: "Meineking",
-//         date: "2022-04-27"
-//     },
-//     {
-//         id: 13,
-//         name: "Haroun",
-//         description: "Gauge",
-//         date: "2022-05-04"
-//     },
-//     {
-//         id: 14,
-//         name: "Maury",
-//         description: "Wanek",
-//         date: "2022-05-04"
-//     },
-//     {
-//         id: 15,
-//         name: "Ted",
-//         description: "quia molestiae reprehenderit quasi aspernatur\\naut expedita occaecati aliquam eveniet laudantium\\nomnis quibusdam delectus saepe quia accusamus maiores nam est\\ncum et ducimus et vero voluptates excepturi deleniti ratione",
-//         date: "2022-05-05"
-//     },
-//     {
-//         id: 16,
-//         name: "Hillyer",
-//         description: "Wistance",
-//         date: "2022-05-06"
-//     },
-//     {
-//         id: 17,
-//         name: "Adora",
-//         description: "Rastall",
-//         date: "2022-04-06"
-//     },
-//     {
-//         id: 18,
-//         name: "Charil",
-//         description: "O' Liddy",
-//         date: "2022-05-06"
-//     },
-//     {
-//         id: 19,
-//         name: "Ardelle",
-//         description: "Hasney",
-//         date: "2022-05-08"
-//     },
-//     {
-//         id: 20,
-//         name: "Denny",
-//         description: "Vida",
-//         date: "2022-05-08"
-//     },
-//     {
-//         id: 21,
-//         name: "Aline",
-//         description: "Fuentez",
-//         date: "2022-05-08"
-//     },
-//     {
-//         id: 22,
-//         name: "Claresta",
-//         description: "Snedden",
-//         date: "2022-05-08"
-//     },
-//     {
-//         id: 23,
-//         name: "Karina",
-//         description: "Volante",
-//         date: "2022-06-09"
-//     },
-//     {
-//         id: 24,
-//         name: "Rochell",
-//         description: "Sheriff",
-//         date: "2022-05-09"
-//     },
-//     {
-//         id: 25,
-//         name: "Ara",
-//         description: "D'Alwis",
-//         date: "2022-04-09"
-//     },
-//     {
-//         id: 26,
-//         name: "Cherlyn",
-//         description: "Wandrich",
-//         date: "2022-05-11"
-//     },
-//     {
-//         id: 27,
-//         name: "Rosabel",
-//         description: "Muggleston",
-//         date: "2022-05-11"
-//     },
-//     {
-//         id: 28,
-//         name: "Maressa",
-//         description: "Colleymore",
-//         date: "2022-05-12"
-//     },
-//     {
-//         id: 29,
-//         name: "Phillip",
-//         description: "Kelshaw",
-//         date: "2022-05-13"
-//     },
-//     {
-//         id: 30,
-//         name: "Ferrell",
-//         description: "Barber",
-//         date: "2022-05-15"
-//     },
-//     {
-//         id: 31,
-//         name: "Callida",
-//         description: "Kimbly",
-//         date: "2022-05-16"
-//     },
-//     {
-//         id: 32,
-//         name: "Francesca",
-//         description: "Wardel",
-//         date: "2022-05-19"
-//     },
-//     {
-//         id: 33,
-//         name: "Timmie",
-//         description: "Meaden",
-//         date: "2022-05-23"
-//     },
-//     {
-//         id: 34,
-//         name: "Brandie",
-//         description: "Fursland",
-//         date: "2022-05-15"
-//     },
-//     {
-//         id: 35,
-//         name: "Tirrell",
-//         description: "Knibley",
-//         date: "2022-05-11"
-//     },
-//     {
-//         id: 36,
-//         name: "Juanita",
-//         description: "Mayfield",
-//         date: "2022-05-11"
-//     },
-//     {
-//         id: 37,
-//         name: "Luelle",
-//         description: "Dibdale",
-//         date: "2022-05-16"
-//     },
-//     {
-//         id: 38,
-//         name: "Ralina",
-//         description: "De Maine",
-//         date: "2022-05-16"
-//     },
-//     {
-//         id: 39,
-//         name: "Oren",
-//         description: "Urch",
-//         date: "2022-05-18"
-//     },
-//     {
-//         id: 40,
-//         name: "Fiann",
-//         description: "Menhenitt",
-//         date: "2022-05-29"
-//     }
-// ];
+const getList = (listFromBD) => {
+    let dataForTable = []
+    for(let i = 0; i < listFromBD.length; ++i) {
+        dataForTable[i] = {}
+        dataForTable[i].id = listFromBD[i].Experiment_ID
+        dataForTable[i].number = i+1
+        dataForTable[i].name = listFromBD[i].Experiment_Name
+        dataForTable[i].date = listFromBD[i].Experiment_Date
+        dataForTable[i].description = listFromBD[i].Experiment_Description
+    }
+    return dataForTable
+}
+
+const DeleteRow = (row) => {
+    console.log(typeof row.id)
+    return (dispatch, getState) => {
+        axios.delete('http://localhost:8000/experiments', {
+            data: {id: row.id}
+        }).then(res => {
+            if(res.data == 1) {
+                axios.get('http://localhost:8000/experiments').then(res => {
+                    dispatch(changeListOfExperiments( getList(res.data) ))
+                })
+            }
+        })
+    }
+    
+}
+
 
 class DataTable extends React.Component {
-
-    state = {
-
-    }
 
     constructor() {
         super();
@@ -268,6 +53,12 @@ class DataTable extends React.Component {
             columns: [
                 {
                     dataField: "id",
+                    text: "ID",
+                    sort: false,
+                    hidden: true
+                },
+                {
+                    dataField: "number",
                     text: "ID",
                     sort: true
                 },
@@ -299,34 +90,22 @@ class DataTable extends React.Component {
                     formatter: this.linkOpen,
                 }
             ],
-            isDelete: true,
-            data: [],
+            isDelete: true
         };
 
         
 
-        this.onDeleteChanged.bind(this);
         this.onOpenChanged.bind(this);
     }
 
 
-    async componentDidMount() {
-        let newdata = (await axios.get('http://localhost:8000/experiments')).data
-        let dataForTable = []
-        for(let i = 0; i < newdata.length; ++i) {
-            dataForTable[i] = {}
-            dataForTable[i].id = newdata[i].Experiment_ID
-            dataForTable[i].name = newdata[i].Experiment_Name
-            dataForTable[i].date = newdata[i].Experiment_Date
-            dataForTable[i].description = newdata[i].Experiment_Description
-        }
-        this.setState({data: dataForTable})
-    }
+    componentDidMount() {
+        const {changeListOfExperiments} = this.props;
 
-    onDeleteChanged() {
-        this.setState({ isDelete: !this.state.isDelete });
-        console.log(this.state.isDelete);
-        console.log("УДАЛЕНО");
+        axios.get('http://localhost:8000/experiments').then(res => {
+            changeListOfExperiments(getList(res.data));
+        })
+        
     }
 
     linkDelete = (cell, row, rowIndex, formatExtraData) => {
@@ -334,7 +113,7 @@ class DataTable extends React.Component {
                 <Button
                     className="delete-btn"
                     onClick={() => {
-                        this.onDeleteChanged(row);
+                        this.props.deleteRow(row);
                     }}
                 >
                     Удалить
@@ -370,7 +149,7 @@ class DataTable extends React.Component {
                     striped
                     hover
                     condensed
-                    data={this.state.data}
+                    data={this.props.data}
                     columns={this.state.columns}
                     filter={filterFactory()}
                 />
@@ -379,7 +158,20 @@ class DataTable extends React.Component {
     }
 }
 
-export default DataTable;
+const mapStateToProps = (state) => {
+    return {
+        data: state.openExperiment.listOfExperiments
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeListOfExperiments: (e) => dispatch(changeListOfExperiments(e)),
+        deleteRow: (e) => dispatch(DeleteRow(e))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataTable);
 
 // import { MouseEventHandler, useCallback, useState } from "react";
 // import data from "./data.json";

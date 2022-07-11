@@ -146,7 +146,7 @@ export const changeDataForGraphs = (newdata) => {
 	}
 }
 
-function AuthorizationReducer(state = initialState, action) {
+function CreateExperimentReducer(state = initialState, action) {
 	switch(action.type) {
 		case ACTION_CHANGE_NAME:
 			return Object.assign({}, state, {name: action.data});
@@ -166,4 +166,4 @@ function AuthorizationReducer(state = initialState, action) {
 }
 
 
-export default AuthorizationReducer;
+export default CreateExperimentReducer;
